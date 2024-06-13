@@ -16,6 +16,8 @@ defineProps({
 			<a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
 		</h3>
 	</div>
+
+	<div className="bg-red text-blue-400 text-3xl font-extralight">TEST TAILWIND</div>
 </template>
 
 <style scoped>
