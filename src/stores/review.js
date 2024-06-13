@@ -11,7 +11,22 @@ export const useReviewStore = defineStore({
 		error: null
 	}),
 	getters: {
-		//
+		getDeptList: (state) => {
+			// Okay so don't use this one, but I'll keep it here
+			const depts = state.reviews.map((reviews) => reviews.course_number)
+			return [...new Set(depts)]
+		},
+		getMajorList: (state) => {
+			const majors = state.reviews.map((reviews) => reviews.course_number.split(' ')[0])
+			return [...new Set(majors)].sort()
+		},
+		getCourseByMajor: (state) => (major) => {
+			const reviewOfMajor = state.reviews.filter((reviews) =>
+				reviews.course_number.startsWith(major)
+			)
+			const courses = reviewOfMajor.map((reviewOfMajor) => reviewOfMajor.course_number)
+			return [...new Set(courses)].sort()
+		}
 	},
 	actions: {
 		async fetchReviews() {
