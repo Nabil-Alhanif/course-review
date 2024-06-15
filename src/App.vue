@@ -4,7 +4,7 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-	<header>
+	<!-- <header>
 		<img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
 		<div class="wrapper">
@@ -16,9 +16,17 @@ import HelloWorld from './components/HelloWorld.vue'
 				<RouterLink to="/reviews">Reviews</RouterLink>
 			</nav>
 		</div>
-	</header>
+	</header> -->
+	<main>
+		<h1 class="title">BIM at UBC <br> Course Review</h1>
+    	<div >
+			<form action="" class="main-search">
+				<input type="text" name="course-name" id="course-name" placeholder="Course Name" class="main-search-text">
+			</form>
+		</div>
+	</main>
 
-	<RouterView />
+	<!-- <RouterView /> -->
 </template>
 
 <style scoped>
