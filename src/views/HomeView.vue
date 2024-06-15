@@ -12,7 +12,7 @@ const { fetchReviews } = useReviewStore()
 const selectedMajor = ref('')
 const filteredCourses = ref([])
 
-// Function to filter creatures by type
+// Function to filter courses by major
 const filterCoursesByMajor = (major) => {
 	selectedMajor.value = major
 	filteredCourses.value = getCourseByMajor.value(major)
