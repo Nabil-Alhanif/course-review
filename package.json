@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "generate-clasp-config": "node utils/generate-clasp-config.js",
+    "clasp:pull": "bun generate-clasp-config && cd src/gsheet && bun clasp pull",
     "clasp:push": "bun generate-clasp-config && cd src/gsheet && bun clasp push",
     "clasp:deploy": "bun generate-clasp-config && cd src/gsheet && bun clasp deploy"
   },
