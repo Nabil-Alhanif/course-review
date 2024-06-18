@@ -27,4 +27,10 @@ coverage
 *.sln
 *.sw?
 
+# Clasp files
+src/database/.clasp.json
+
+# Env files
+.env
+
 *.tsbuildinfo
