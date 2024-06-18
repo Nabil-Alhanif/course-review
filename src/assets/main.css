@@ -1,32 +1,32 @@
 @import './tailwind.css';
 
-main{
-    background-color: #002145;
-    min-width: 100vh;
-    min-height: 100vh;
+main {
+	background-color: #002145;
+	min-width: 100vh;
+	min-height: 100vh;
 }
 
-.title{
-    text-align: center;
-    font-size: 50px;
-    color: white;
+.title {
+	text-align: center;
+	font-size: 50px;
+	color: white;
 }
 
-.main-search{
-    align-content: center;
-    flex: content;
-    align-self: center;
-    align-items: center;
-    align-content: center;
+.main-search {
+	align-content: center;
+	flex: content;
+	align-self: center;
+	align-items: center;
+	align-content: center;
 }
 
-.main-search-text{
-    font-size: 20px;
-    text-align: center;
-    width: 200px;
-    height: 50px;
-    border-radius: 43px;
-    color: black;
-    align-content: center;
-    align-items: center;
+.main-search-text {
+	font-size: 20px;
+	text-align: center;
+	width: 200px;
+	height: 50px;
+	border-radius: 43px;
+	color: black;
+	align-content: center;
+	align-items: center;
 }

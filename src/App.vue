@@ -16,10 +16,19 @@ import { RouterLink, RouterView } from 'vue-router'
 		</div>
 	</header> -->
 	<main>
-		<h1 class="title">BIM at UBC <br> Course Review</h1>
-    	<div >
+		<h1 class="title">
+			BIM at UBC <br />
+			Course Review
+		</h1>
+		<div>
 			<form action="" class="main-search">
-				<input type="text" name="course-name" id="course-name" placeholder="Course Name" class="main-search-text">
+				<input
+					type="text"
+					name="course-name"
+					id="course-name"
+					placeholder="Course Name"
+					class="main-search-text"
+				/>
 			</form>
 		</div>
 	</main>
@@ -27,5 +36,4 @@ import { RouterLink, RouterView } from 'vue-router'
 	<!-- <RouterView /> -->
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
