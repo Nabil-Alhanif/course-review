@@ -9,11 +9,11 @@ const baseDir = process.env.BASEDIR
 
 const claspConfig = {
   scriptId: process.env.CLASP_SCRIPT_ID,
-  rootDir: path.join(baseDir, '/src/database')
+  rootDir: path.join(baseDir, '/src/gsheet')
 }
 
 writeFileSync(
-  path.join(baseDir, 'src/database/.clasp.json'),
+  path.join(baseDir, 'src/gsheet/.clasp.json'),
   JSON.stringify(claspConfig, null, 2)
 )
 
