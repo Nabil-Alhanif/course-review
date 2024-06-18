@@ -3,7 +3,7 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
 	root: true,
-	'extends': [
+	extends: [
 		'plugin:vue/vue3-essential',
 		'eslint:recommended',
 		'@vue/eslint-config-prettier/skip-formatting'
@@ -11,9 +11,11 @@ module.exports = {
 	parserOptions: {
 		ecmaVersion: 'latest'
 	},
-	plugins: [
-		'@stylistic/js'
-	],
+	plugins: ['@stylistic/js', 'googleappsscript'],
+	env: {
+		'googleappsscript/googleappsscript': true,
+		node: true
+	},
 	rules: {
 		'@stylistic/js/indent': ['error', 'tab'], // Enforces tabs for indentation using @stylistic/eslint-plugin-js
 		'@stylistic/js/no-tabs': 'off' // Disables the rule that prevents the use of tabs

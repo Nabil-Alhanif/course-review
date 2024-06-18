@@ -32,7 +32,8 @@ const push = () => {
 const deploy = () => {
 	console.log('Deploying to Google Apps Script...')
 	execSync(`bun clasp deploy --deploymentId ${process.env.CLASP_DEPLOYMENT_ID}`, {
-    stdio: 'inherit', cwd: claspDir
+		stdio: 'inherit',
+		cwd: claspDir
 	})
 }
 
