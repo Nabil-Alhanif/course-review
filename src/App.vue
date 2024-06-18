@@ -23,9 +23,9 @@ import { RouterLink, RouterView } from 'vue-router'
 		<div>
 			<form action="" class="main-search">
 				<input
+					id="course-name"
 					type="text"
 					name="course-name"
-					id="course-name"
 					placeholder="Course Name"
 					class="main-search-text"
 				/>
@@ -33,7 +33,7 @@ import { RouterLink, RouterView } from 'vue-router'
 		</div>
 	</main>
 
-	<!-- <RouterView /> -->
+	<RouterView />
 </template>
 
 <style scoped></style>

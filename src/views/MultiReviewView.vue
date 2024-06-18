@@ -12,8 +12,10 @@ fetchReviews()
 <template>
 	<main>
 		<p v-if="loading">Loading...</p>
-		<p v-if="error">{{ error.message }}</p>
-		<div v-if="reviews" v-for="review in reviews" :key="review.id">
+		<p v-if="error">
+			{{ error.message }}
+		</p>
+		<div v-for="review in reviews" v-if="reviews" :key="review.id">
 			<p>{{ review.course_number }} - {{ review.course_title }}</p>
 			<p>Instructor: {{ review.instructor }}</p>
 			<p>{{ review.description }}</p>

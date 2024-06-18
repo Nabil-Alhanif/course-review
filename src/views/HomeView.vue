@@ -25,7 +25,9 @@ fetchReviews()
 <template>
 	<main>
 		<p v-if="loading">Loading...</p>
-		<p v-if="error">{{ error.message }}</p>
+		<p v-if="error">
+			{{ error.message }}
+		</p>
 		<div v-if="reviews">
 			<h1>Major List</h1>
 			<ul>
@@ -36,7 +38,9 @@ fetchReviews()
 
 			<h2>Courses List Of {{ selectedMajor }}</h2>
 			<ul>
-				<li v-for="(course, index) in filteredCourses" :key="index">{{ course }}</li>
+				<li v-for="(course, index) in filteredCourses" :key="index">
+					{{ course }}
+				</li>
 			</ul>
 		</div>
 	</main>

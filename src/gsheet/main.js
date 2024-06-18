@@ -2,11 +2,13 @@
 function doGet(e) {
 	const action = e.parameter.action
 	switch (action) {
-		case 'getSheetData':
-			const sheet_name = e.parameter.sheetName
-			return getSheetData(sheet_name)
-		default:
-			return ContentService.createTextOutput(JSON.stringify({ error: 'Invalid action' }))
+	case 'getSheetData': {
+		const sheet_name = e.parameter.sheetName
+		return getSheetData(sheet_name)
+	}
+	default: {
+		return ContentService.createTextOutput(JSON.stringify({ error: 'Invalid action' }))
+	}
 	}
 }
 

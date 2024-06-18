@@ -13,9 +13,9 @@ function getSheetData(sheet_name) {
 	// Convert rows of data to objects with header keys
 	const records = data.map((row) => {
 		let record = {}
-		headers.forEach((header, index) => {
+		for (const [index, header] of headers.entries()) {
 			record[header] = row[index]
-		})
+		}
 		return record
 	})
 	// Return the data as JSON
