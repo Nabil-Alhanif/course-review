@@ -2,13 +2,13 @@
 function doGet(e) {
 	const action = e.parameter.action
 	switch (action) {
-	case 'getSheetData': {
-		const sheet_name = e.parameter.sheetName
-		return getSheetData(sheet_name)
-	}
-	default: {
-		return ContentService.createTextOutput(JSON.stringify({ error: 'Invalid action' }))
-	}
+		case 'getSheetData': {
+			const sheet_name = e.parameter.sheetName
+			return getSheetData(sheet_name)
+		}
+		default: {
+			return ContentService.createTextOutput(JSON.stringify({ error: 'Invalid action' }))
+		}
 	}
 }
 
@@ -32,35 +32,33 @@ function onFormSubmit(e) {
 	const description = responses['Description'][0]
 	const tips = responses['Tips'][0]
 
-	// Generate unique IDs
-	const user_id = generateUUID()
-	const course_id = generateUUID()
-	const instructor_id = generateUUID()
-	const review_id = generateUUID()
-
 	// Insert into Users sheet
-	appendNewUser(user_id, reviewer_name, reviewer_email)
+	user_obj = { id: null, name: reviewer_name, email: reviewer_email }
+	appendNewUser(user_obj)
 
 	// Insert into Courses sheet
-	appendNewCourse(course_id, course_faculty, course_number, course_title)
+	course_obj = { id: null, faculty: course_faculty, number: course_number, title: course_title }
+	appendNewCourse(course_obj)
 
 	// Insert into Instructors sheet
-	appendNewInstructor(instructor_id, instructor_name)
+	instructor_obj = { id: null, name: instructor_name }
+	appendNewInstructor(instructor_obj)
 
 	// Insert into Reviews sheet
-	appendNewReview(
-		review_id,
-		user_id,
-		course_id,
-		instructor_id,
-		reviewer_faculty,
-		reviewer_standing,
-		instructor_rating,
-		workload,
-		difficulties,
-		recommended,
-		description,
-		tips,
-		timestamp
-	)
+	review_obj = {
+		id: null,
+		user_id: user_obj.id,
+		course_id: course_obj.id,
+		instructor_id: instructor_obj.id,
+		reviewer_faculty: reviewer_faculty,
+		reviewer_standing: reviewer_standing,
+		instructor_rating: instructor_rating,
+		workload: workload,
+		difficulties: difficulties,
+		recommended: recommended,
+		description: description,
+		tips: tips,
+		timestamp: timestamp
+	}
+	appendNewReview(review_obj)
 }

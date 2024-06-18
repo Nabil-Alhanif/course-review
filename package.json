@@ -8,20 +8,20 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "format": "prettier --write src/",
-    "generate-clasp-config": "node utils/generate-clasp-config.js",
-    "clasp:pull": "bun generate-clasp-config && cd src/gsheet && bun clasp pull",
-    "clasp:push": "bun generate-clasp-config && cd src/gsheet && bun clasp push",
-    "clasp:deploy": "bun generate-clasp-config && cd src/gsheet && bun clasp deploy"
+    "format": "prettier --write src/ utils/",
+    "generate-clasp-config": "node utils/deploy.js config",
+    "clasp:pull": "node utils/deploy.js pull",
+    "clasp:push": "node utils/deploy.js push",
+    "clasp:deploy": "node utils/deploy.js deploy"
   },
   "dependencies": {
-    "@google/clasp": "^2.4.2",
     "dotenv": "^16.4.5",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@google/clasp": "^2.4.2",
     "@rushstack/eslint-patch": "^1.8.0",
     "@stylistic/eslint-plugin-js": "^2.2.1",
     "@vitejs/plugin-vue": "^5.0.4",

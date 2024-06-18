@@ -29,6 +29,7 @@ coverage
 
 # Clasp files
 src/gsheet/.clasp.json
+.clasp.json
 
 # Env files
 .env
