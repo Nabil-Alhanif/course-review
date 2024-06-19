@@ -4,10 +4,13 @@ import { storeToRefs } from 'pinia'
 import { useCourseStore } from '@/stores/course'
 import CourseCard from '@/components/CourseCard.vue'
 
-const { courses, loading, error } = storeToRefs(useCourseStore())
-const { fetchCourses } = useCourseStore()
+const courseStore = useCourseStore()
+const { courses, loading, error } = storeToRefs(courseStore)
+const { fetchCourses } = courseStore
 
-fetchCourses()
+onMounted(() => {
+	fetchCourses()
+})
 </script>
 
 <template>
@@ -42,7 +45,11 @@ fetchCourses()
 		<div v-if="courses">
 			<div class="course-grid">
 				<div v-for="course in courses">
-					<CourseCard v-bind="course" />
+					<CourseCard
+						:course_faculty="course.faculty"
+						:course_code="course.code"
+						:course_title="course.title"
+					/>
 				</div>
 			</div>
 		</div>
