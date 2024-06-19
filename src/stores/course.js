@@ -4,7 +4,6 @@ export const useCourseStore = defineStore({
 	id: 'course',
 	state: () => ({
 		courses: [],
-		course: null,
 		loading: false,
 		error: null
 	}),
