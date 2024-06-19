@@ -1,5 +1,20 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+
+const props = defineProps({
+	course_faculty: {
+		type: String,
+		required: false
+	},
+	course_code: {
+		type: String,
+		required: true
+	},
+	course_title: {
+		type: String,
+		required: true
+	}
+})
 </script>
 
 <template>
