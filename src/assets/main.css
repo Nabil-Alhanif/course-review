@@ -1,7 +1,7 @@
 @import './tailwind.css';
 
 main {
-	background-color: grey;
+	background-color: white;
 	min-width: 100vh;
 	min-height: 100vh;
 }
