@@ -8,7 +8,6 @@ const courseStore = useCourseStore()
 const { courses, loading, error } = storeToRefs(courseStore)
 const { fetchCourses } = courseStore
 
-
 fetchCourses()
 
 </script>
@@ -34,17 +33,20 @@ fetchCourses()
 					name="course-name"
 					placeholder="Course Name"
 					class="main-search-text"
+
 				/>
 			</form>
 		</div>
 
 		<p v-if="loading">Loading...</p>
+
 		<p v-if="error">
 			{{ error.message }}
 		</p>
-		<div v-if="courses">
-			<div class="course-grid">
-				<div v-for="course in courses">
+
+		<div className="flex justify-center " v-if="courses">
+			<div class="grid grid-cols-3 gap-3 w-5/6">
+				<div class="max-w-sm" v-for="course in courses" :key="course.id">
 					<CourseCard
 						:course_faculty="course.faculty"
 						:course_code="course.code"
@@ -55,11 +57,3 @@ fetchCourses()
 		</div>
 	</main>
 </template>
-
-<style lang="scss" scoped>
-.course-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 16px;
-}
-</style>
