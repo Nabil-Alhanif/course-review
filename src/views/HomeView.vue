@@ -39,6 +39,115 @@ fetchReviews()
 				/>
 			</form>
 		</div>
+
+		<div>
+		<h2>Heading 2</h2>
+
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<div>
+							<div class="gambar">1</div>
+							<br>product
+							<br>
+							description
+							<br> 10.99	
+						</div>
+					</td>
+					<td>
+						<div>
+							<div class="gambar">2</div>
+							<br>product
+							<br>
+							description
+							<br> 10.99	
+						</div>
+					</td>
+					<td>
+						<div>
+							<div class="gambar">3</div>
+							<br>product
+							<br>
+							description
+							<br> 10.99	
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div>
+							<div class="gambar">4</div>
+							<br>product
+							<br>
+							description
+							<br> 10.99	
+						</div>
+					</td>
+					<td>
+						<div>
+							<div class="gambar">5</div>
+							<br>product
+							<br>
+							description
+							<br> 10.99	
+						</div>
+					</td>
+					<td>
+						<div>
+							<div class="gambar">6</div>
+							<br>product
+							<br>
+							description
+							<br> 10.99	
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+
+		<div>
+			<h2>Heading 2</h2>
+
+			<table>
+				<tbody>
+					<tr>
+						<td rowspan="2">
+							<div>
+								<div class="gambar2">1</div>
+								<br>
+								product <br>
+								description <br>
+								10.99
+							</div>
+						</td>
+						<td>
+							<div>
+								<div class="gambar3">2</div>
+								<br>
+								product <br>
+								description <br>
+								10.99
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div>
+								<br>
+								<div class="gambar3">2</div>
+								<br>
+								product <br>
+								description <br>
+								10.99
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
 		<p v-if="loading">Loading...</p>
 		<p v-if="error">
 			{{ error.message }}

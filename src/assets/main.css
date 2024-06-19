@@ -1,7 +1,7 @@
 @import './tailwind.css';
 
 main {
-	background-color: #002145;
+	background-color: grey;
 	min-width: 100vh;
 	min-height: 100vh;
 }
@@ -29,4 +29,32 @@ main {
 	color: black;
 	align-content: center;
 	align-items: center;
+}
+
+.gambar{
+	width: 404px;
+	height: 244px;
+	background-color: red;
+}
+
+table{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+td, tr{
+	padding: 16px;
+}
+
+.gambar2{
+	width: 735px;
+	height: 642px;
+	background-color: red;
+}
+
+.gambar3{
+	width: 515px;
+	height: 244px;
+	background-color: red;
 }
