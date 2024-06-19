@@ -19,14 +19,25 @@ const props = defineProps({
 
 <template>
 	<RouterLink to="/course">
-		<div class="kartu">
-      <p>{{course_code}}</p>
-			<div class="gambar">1</div>
-			<div class="course-name">product</div>
-			<br />
-			description
-			<br />
-			10.99
+		<div
+			class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+		>
+			<img
+				class="rounded-t-lg justify-center items-center bg-red-600 h-48 w-full object-cover"
+				src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDFq5wKktyhpmM9hOT06s-vEDuTaP_W_v0lw&s"
+				alt=""
+			/>
+
+			<div class="p-5">
+				<a href="#">
+					<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+						{{ course_code }}
+					</h5>
+				</a>
+				<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+					{{ course_title }}
+				</p>
+			</div>
 		</div>
 	</RouterLink>
 </template>
