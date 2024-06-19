@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Generate UUID for unique identification
 function generateUUID() {
 	const template = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
@@ -116,3 +117,4 @@ function appendNewReview(review) {
 		Logger.log('Inserted new review data into Reviews sheet')
 	}
 }
+/* eslint-enable no-unused-vars */
