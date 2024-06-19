@@ -20,6 +20,7 @@ const props = defineProps({
 <template>
 	<RouterLink to="/course">
 		<div class="kartu">
+      <p>{{course_code}}</p>
 			<div class="gambar">1</div>
 			<div class="course-name">product</div>
 			<br />

@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useReviewStore } from '@/stores/review'
 import CourseCard from '@/components/CourseCard.vue'
-import CourseView from './CourseView.vue'
 
 // Access the pinia store
 const { reviews, loading, loaded, error } = storeToRefs(useReviewStore())
@@ -22,6 +21,12 @@ const filterCoursesByMajor = (major) => {
 
 // Fetch the reviews
 fetchReviews()
+
+const course_list = [
+  { course_code: 'CS101', course_title: 'Computer Science 101', course_faculty: 'Science' },
+  { course_code: 'MA101', course_title: 'Mathematics 101', course_faculty: 'Science' },
+  { course_code: 'PH101', course_title: 'Physics 101', course_faculty: 'Science' },
+]
 </script>
 
 <template>
@@ -49,77 +54,11 @@ fetchReviews()
 			</form>
 		</div>
 
-		<div>
-			<h2>Heading 2</h2>
-
-			<table>
-				<tbody>
-					<tr>
-						<td>
-							<CourseCard />
-						</td>
-						<td>
-							<CourseCard />
-						</td>
-						<td>
-							<CourseCard />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<CourseCard />
-						</td>
-						<td>
-							<CourseCard />
-						</td>
-						<td>
-							<CourseCard />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-		<div>
-			<h2>Heading 2</h2>
-
-			<table>
-				<tbody>
-					<tr>
-						<td rowspan="2">
-							<div>
-								<div class="gambar2">1</div>
-								<br />
-								product <br />
-								description <br />
-								10.99
-							</div>
-						</td>
-						<td>
-							<div>
-								<div class="gambar3">2</div>
-								<br />
-								product <br />
-								description <br />
-								10.99
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div>
-								<br />
-								<div class="gambar3">2</div>
-								<br />
-								product <br />
-								description <br />
-								10.99
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+    <div class="course-grid">
+      <div v-for="course in course_list">
+        <CourseCard v-bind="course" />
+      </div>
+    </div>
 
 		<p v-if="loading">Loading...</p>
 		<p v-if="error">
