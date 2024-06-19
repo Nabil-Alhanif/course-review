@@ -8,9 +8,9 @@ const courseStore = useCourseStore()
 const { courses, loading, error } = storeToRefs(courseStore)
 const { fetchCourses } = courseStore
 
-onMounted(() => {
-	fetchCourses()
-})
+
+fetchCourses()
+
 </script>
 
 <template>
