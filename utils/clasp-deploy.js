@@ -1,6 +1,6 @@
-import { execSync } from 'node:child_process'
-import path from 'node:path'
-import { writeFileSync } from 'node:fs'
+import { execSync } from 'child_process'
+import path from 'path'
+import { writeFileSync } from 'fs'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -21,17 +21,17 @@ const generateClaspConfig = () => {
 
 const pull = () => {
 	console.log('Pulling code from Google Apps Script...')
-	execSync('bun clasp pull', { stdio: 'inherit', cwd: claspDir })
+	execSync('clasp pull', { stdio: 'inherit', cwd: claspDir })
 }
 
 const push = () => {
 	console.log('Pushing code to Google Apps Script...')
-	execSync('bun clasp push', { stdio: 'inherit', cwd: claspDir })
+	execSync('clasp push', { stdio: 'inherit', cwd: claspDir })
 }
 
 const deploy = () => {
 	console.log('Deploying to Google Apps Script...')
-	execSync(`bun clasp deploy --deploymentId ${process.env.CLASP_DEPLOYMENT_ID}`, {
+	execSync(`clasp deploy --deploymentId ${process.env.CLASP_DEPLOYMENT_ID}`, {
 		stdio: 'inherit',
 		cwd: claspDir
 	})

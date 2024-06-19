@@ -6,17 +6,19 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
+		"deploy": "bun utils/gh-deploy.js",
 		"preview": "vite preview",
 		"lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-		"format": "prettier --write src/ utils/",
-		"generate-clasp-config": "node utils/deploy.js config",
-		"clasp:pull": "node utils/deploy.js pull",
-		"clasp:push": "node utils/deploy.js push",
-		"clasp:deploy": "node utils/deploy.js deploy"
+		"format": "prettier --write .",
+		"generate-clasp-config": "bun utils/clasp-deploy.js config",
+		"clasp:pull": "bun utils/clasp-deploy.js pull",
+		"clasp:push": "bun utils/clasp-deploy.js push",
+		"clasp:deploy": "bun utils/clasp-deploy.js deploy"
 	},
 	"dependencies": {
 		"dotenv": "^16.4.5",
 		"pinia": "^2.1.7",
+		"simple-git": "^3.25.0",
 		"vue": "^3.4.21",
 		"vue-router": "^4.3.0"
 	},
