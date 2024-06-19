@@ -4,24 +4,57 @@ import { RouterLink } from 'vue-router'
 
 <template>
 	<nav>
-		<div class="logo">
-			<img src="../assets/logo.svg" alt="Vue" />
-		</div>
+		<div class="navbar-container">
+			<RouterLink to="/" class="navbar-logo">
+				<img src="../assets/logo.svg" alt="Vue" />
+			</RouterLink>
 
-		<div class="nav-link">
-			<RouterLink to="/">Home</RouterLink>
-			<RouterLink to="/about">About</RouterLink>
-			<RouterLink to="/reviews">Reviews</RouterLink>
+			<ul class="navbar-menu">
+				<li class="navbar-item">
+					<RouterLink to="/" class="navbar-link">Home</RouterLink>
+				</li>
+				<li class="navbar-item">
+					<RouterLink to="/about" class="navbar-link">About</RouterLink>
+				</li>
+				<li class="navbar-item">
+					<RouterLink to="/reviews" class="navbar-link">Reviews</RouterLink>
+				</li>
+			</ul>
 		</div>
 	</nav>
 </template>
 
 <style lang="scss" scoped>
 nav {
-	.logo {
+	.navbar-container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 		margin: 1rem 1rem;
-		img {
-			width: 2rem;
+
+		position: relative;
+
+		.navbar-logo {
+			img {
+				width: 2rem;
+			}
+		}
+
+		.navbar-menu {
+			display: flex;
+			float: right;
+
+			.navbar-item {
+				margin-left: 1rem;
+
+				.navbar-link {
+					font-weight: bold;
+				}
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 }
