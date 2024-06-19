@@ -31,29 +31,28 @@ main {
 	align-items: center;
 }
 
-.gambar{
-	width: 404px;
-	height: 244px;
-	background-color: red;
+.course-name {
+	font-size: 20px;
 }
 
-table{
+table {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-td, tr{
+td,
+tr {
 	padding: 16px;
 }
 
-.gambar2{
+.gambar2 {
 	width: 735px;
 	height: 642px;
 	background-color: red;
 }
 
-.gambar3{
+.gambar3 {
 	width: 515px;
 	height: 244px;
 	background-color: red;

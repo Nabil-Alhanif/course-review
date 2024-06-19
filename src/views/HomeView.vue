@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useReviewStore } from '@/stores/review'
+import CourseCard from '@/components/CourseCard.vue'
+import CourseView from './CourseView.vue'
 
 // Access the pinia store
 const { reviews, loading, loaded, error } = storeToRefs(useReviewStore())
@@ -41,70 +43,34 @@ fetchReviews()
 		</div>
 
 		<div>
-		<h2>Heading 2</h2>
+			<h2>Heading 2</h2>
 
-		<table>
-			<tbody>
-				<tr>
-					<td>
-						<div>
-							<div class="gambar">1</div>
-							<br>product
-							<br>
-							description
-							<br> 10.99	
-						</div>
-					</td>
-					<td>
-						<div>
-							<div class="gambar">2</div>
-							<br>product
-							<br>
-							description
-							<br> 10.99	
-						</div>
-					</td>
-					<td>
-						<div>
-							<div class="gambar">3</div>
-							<br>product
-							<br>
-							description
-							<br> 10.99	
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<div class="gambar">4</div>
-							<br>product
-							<br>
-							description
-							<br> 10.99	
-						</div>
-					</td>
-					<td>
-						<div>
-							<div class="gambar">5</div>
-							<br>product
-							<br>
-							description
-							<br> 10.99	
-						</div>
-					</td>
-					<td>
-						<div>
-							<div class="gambar">6</div>
-							<br>product
-							<br>
-							description
-							<br> 10.99	
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<CourseCard />
+						</td>
+						<td>
+							<CourseCard />
+						</td>
+						<td>
+							<CourseCard />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<CourseCard />
+						</td>
+						<td>
+							<CourseCard />
+						</td>
+						<td>
+							<CourseCard />
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 		<div>
@@ -116,18 +82,18 @@ fetchReviews()
 						<td rowspan="2">
 							<div>
 								<div class="gambar2">1</div>
-								<br>
-								product <br>
-								description <br>
+								<br />
+								product <br />
+								description <br />
 								10.99
 							</div>
 						</td>
 						<td>
 							<div>
 								<div class="gambar3">2</div>
-								<br>
-								product <br>
-								description <br>
+								<br />
+								product <br />
+								description <br />
 								10.99
 							</div>
 						</td>
@@ -135,11 +101,11 @@ fetchReviews()
 					<tr>
 						<td>
 							<div>
-								<br>
+								<br />
 								<div class="gambar3">2</div>
-								<br>
-								product <br>
-								description <br>
+								<br />
+								product <br />
+								description <br />
 								10.99
 							</div>
 						</td>

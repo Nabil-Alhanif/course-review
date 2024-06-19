@@ -23,6 +23,11 @@ const router = createRouter({
 			component: () => import('@/views/MultiReviewView.vue')
 		},
 		{
+			path: '/course',
+			name: 'course',
+			component: () => import('@/views/CourseView.vue')
+		},
+		{
 			path: '/:pathMatch(.*)*',
 			name: 'not-found',
 			component: () => import('@/views/PageNotFoundView.vue')
