@@ -1,32 +1,14 @@
 <script setup>
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useReviewStore } from '@/stores/review'
+import { useCourseStore } from '@/stores/course'
 import CourseCard from '@/components/CourseCard.vue'
 
-// Access the pinia store
-const { reviews, loading, loaded, error } = storeToRefs(useReviewStore())
-const { getMajorList, getCourseByMajor } = storeToRefs(useReviewStore())
-const { fetchReviews } = useReviewStore()
+const courseStore = useCourseStore()
+const { courses, loading, error } = storeToRefs(courseStore)
+const { fetchCourses } = courseStore
 
-// Reactive data for the component
-const selectedMajor = ref('')
-const filteredCourses = ref([])
-
-// Function to filter courses by major
-const filterCoursesByMajor = (major) => {
-	selectedMajor.value = major
-	filteredCourses.value = getCourseByMajor.value(major)
-}
-
-// Fetch the reviews
-fetchReviews()
-
-const course_list = [
-  { course_code: 'CS101', course_title: 'Computer Science 101', course_faculty: 'Science' },
-  { course_code: 'MA101', course_title: 'Mathematics 101', course_faculty: 'Science' },
-  { course_code: 'PH101', course_title: 'Physics 101', course_faculty: 'Science' },
-]
+fetchCourses()
 </script>
 
 <template>
@@ -38,7 +20,7 @@ const course_list = [
 				BIM at UBC
 			</span>
 			<div className="text-xl font-semibold text-gray-700">
-				Course <span className="italic underline  font-bold text-cyan-500"> Review</span>
+				Course <span className="italic underline font-bold text-cyan-500"> Review</span>
 			</div>
 		</h1>
 
@@ -54,30 +36,26 @@ const course_list = [
 			</form>
 		</div>
 
-    <div class="course-grid">
-      <div v-for="course in course_list">
-        <CourseCard v-bind="course" />
-      </div>
-    </div>
-
 		<p v-if="loading">Loading...</p>
+
 		<p v-if="error">
 			{{ error.message }}
 		</p>
-		<div v-if="reviews">
-			<h1>Major List</h1>
-			<ul>
-				<li v-for="major in getMajorList" :key="major" @click="filterCoursesByMajor(major)">
-					{{ major }}
-				</li>
-			</ul>
 
-			<h2>Courses List Of {{ selectedMajor }}</h2>
-			<ul>
-				<li v-for="(course, index) in filteredCourses" :key="index">
-					{{ course }}
-				</li>
-			</ul>
+		<div className="flex justify-center " v-if="courses">
+			<div class="grid grid-cols-3 gap-3 w-5/6">
+				<div class="max-w-sm" v-for="course in courses" :key="course.id">
+					<CourseCard :course="course" />
+				</div>
+			</div>
 		</div>
 	</main>
 </template>
+
+<style lang="scss" scoped>
+.course-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 16px;
+}
+</style>

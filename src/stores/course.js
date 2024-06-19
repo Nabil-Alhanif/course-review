@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useCourseStore = defineStore({
 	id: 'course',
 	state: () => ({
-		courses: [],
-		course: null,
-		loading: false,
-		error: null
+		courses: ref([]),
+		loading: ref(false),
+		error: ref(null)
 	}),
 	getters: {
 		//
