@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import Navbar from '@/components/Navbar.vue'
 </script>
 
 <template>
@@ -15,23 +16,7 @@ import { RouterLink, RouterView } from 'vue-router'
 			</nav>
 		</div>
 	</header> -->
-	<main>
-		<h1 class="title">
-			BIM at UBC <br />
-			Course Review
-		</h1>
-		<div>
-			<form action="" class="main-search">
-				<input
-					id="course-name"
-					type="text"
-					name="course-name"
-					placeholder="Course Name"
-					class="main-search-text"
-				/>
-			</form>
-		</div>
-	</main>
+	<Navbar />
 
 	<RouterView />
 </template>

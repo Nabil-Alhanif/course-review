@@ -24,6 +24,21 @@ fetchReviews()
 
 <template>
 	<main>
+		<h1 class="title">
+			BIM at UBC <br />
+			Course Review
+		</h1>
+		<div>
+			<form action="" class="main-search">
+				<input
+					id="course-name"
+					type="text"
+					name="course-name"
+					placeholder="Course Name"
+					class="main-search-text"
+				/>
+			</form>
+		</div>
 		<p v-if="loading">Loading...</p>
 		<p v-if="error">
 			{{ error.message }}

@@ -10,7 +10,7 @@
 		"preview": "vite preview",
 		"lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
 		"format": "prettier --write .",
-		"generate-clasp-config": "bun utils/clasp-deploy.js config",
+		"clasp:config": "bun utils/clasp-deploy.js config",
 		"clasp:pull": "bun utils/clasp-deploy.js pull",
 		"clasp:push": "bun utils/clasp-deploy.js push",
 		"clasp:deploy": "bun utils/clasp-deploy.js deploy"
@@ -18,7 +18,6 @@
 	"dependencies": {
 		"dotenv": "^16.4.5",
 		"pinia": "^2.1.7",
-		"simple-git": "^3.25.0",
 		"vue": "^3.4.21",
 		"vue-router": "^4.3.0"
 	},
@@ -34,6 +33,8 @@
 		"eslint-plugin-vue": "^9.23.0",
 		"postcss": "^8.4.38",
 		"prettier": "^3.2.5",
+		"sass": "^1.77.6",
+		"simple-git": "^3.25.0",
 		"tailwindcss": "^3.4.4",
 		"vite": "^5.2.8"
 	}
