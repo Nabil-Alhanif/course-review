@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Handle GET requests
 function doGet(e) {
 	const action = e.parameter.action
@@ -33,19 +34,19 @@ function onFormSubmit(e) {
 	const tips = responses['Tips'][0]
 
 	// Insert into Users sheet
-	user_obj = { id: null, name: reviewer_name, email: reviewer_email }
+	let user_obj = { id: null, name: reviewer_name, email: reviewer_email }
 	appendNewUser(user_obj)
 
 	// Insert into Courses sheet
-	course_obj = { id: null, faculty: course_faculty, number: course_number, title: course_title }
+	let course_obj = { id: null, faculty: course_faculty, number: course_number, title: course_title }
 	appendNewCourse(course_obj)
 
 	// Insert into Instructors sheet
-	instructor_obj = { id: null, name: instructor_name }
+	let instructor_obj = { id: null, name: instructor_name }
 	appendNewInstructor(instructor_obj)
 
 	// Insert into Reviews sheet
-	review_obj = {
+	let review_obj = {
 		id: null,
 		user_id: user_obj.id,
 		course_id: course_obj.id,
@@ -62,3 +63,4 @@ function onFormSubmit(e) {
 	}
 	appendNewReview(review_obj)
 }
+/* eslint-enable no-unused-vars */

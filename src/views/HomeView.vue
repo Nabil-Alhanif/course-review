@@ -9,7 +9,6 @@ const { courses, loading, error } = storeToRefs(courseStore)
 const { fetchCourses } = courseStore
 
 fetchCourses()
-
 </script>
 
 <template>
@@ -21,7 +20,7 @@ fetchCourses()
 				BIM at UBC
 			</span>
 			<div className="text-xl font-semibold text-gray-700">
-				Course <span className="italic underline  font-bold text-cyan-500"> Review</span>
+				Course <span className="italic underline font-bold text-cyan-500"> Review</span>
 			</div>
 		</h1>
 
@@ -47,13 +46,17 @@ fetchCourses()
 		<div className="flex justify-center " v-if="courses">
 			<div class="grid grid-cols-3 gap-3 w-5/6">
 				<div class="max-w-sm" v-for="course in courses" :key="course.id">
-					<CourseCard
-						:course_faculty="course.faculty"
-						:course_code="course.code"
-						:course_title="course.title"
-					/>
+					<CourseCard :course="course" />
 				</div>
 			</div>
 		</div>
 	</main>
 </template>
+
+<style lang="scss" scoped>
+.course-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 16px;
+}
+</style>

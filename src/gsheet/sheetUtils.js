@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Function to get data from a specified sheet and return it as JSON
 function getSheetData(sheet_name) {
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheet_name)
@@ -23,3 +24,4 @@ function getSheetData(sheet_name) {
 		ContentService.MimeType.JSON
 	)
 }
+/* eslint-enable no-unused-vars */

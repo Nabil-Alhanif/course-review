@@ -11,9 +11,8 @@ module.exports = {
 	parserOptions: {
 		ecmaVersion: 'latest'
 	},
-	plugins: ['@stylistic/js', 'googleappsscript'],
+	plugins: ['@stylistic/js'],
 	env: {
-		'googleappsscript/googleappsscript': true,
 		node: true
 	},
 	rules: {

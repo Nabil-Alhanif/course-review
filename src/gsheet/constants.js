@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Global constants
 const SHEET_NAMES = {
 	USERS: 'Users',
@@ -5,3 +6,4 @@ const SHEET_NAMES = {
 	INSTRUCTOR: 'Instructors',
 	REVIEWS: 'Reviews'
 }
+/* eslint-enable no-unused-vars */
