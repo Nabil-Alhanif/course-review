@@ -28,7 +28,7 @@ coverage
 *.sw?
 
 # Clasp files
-src/gsheet/.clasp.json
+gsheet/.clasp.json
 .clasp.json
 
 # Env files

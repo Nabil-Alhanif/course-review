@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const claspDir = path.join(process.env.BASEDIR, '/src/gsheet')
+const claspDir = path.join(process.env.BASEDIR, '/gsheet')
 
 const generateClaspConfig = () => {
 	const claspConfig = {

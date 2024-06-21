@@ -19,6 +19,7 @@ module.exports = {
 		appendNewInstructor: true,
 		appendNewReview: true,
 		getSheetData: true,
+		generateUUID: true,
 		SHEET_NAMES: true
 	},
 	rules: {

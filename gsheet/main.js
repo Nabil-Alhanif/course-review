@@ -15,30 +15,33 @@ function doGet(e) {
 
 // Process form submission
 function onFormSubmit(e) {
-	const responses = e.namedValues
+	const responses = e.values
 
-	const timestamp = responses['Timestamp'][0]
-	const reviewer_name = responses['Name'][0]
-	const reviewer_email = responses['Email'][0]
-	const course_faculty = responses['Course-Faculty'][0]
-	const course_number = responses['Course-Number'][0]
-	const course_title = responses['Course-Title'][0]
-	const reviewer_faculty = responses['Reviewer-Faculty'][0]
-	const reviewer_standing = responses['Reviewer-Standing'][0]
-	const instructor_name = responses['Instructor-Name'][0]
-	const instructor_rating = responses['Instructor-Rating'][0]
-	const workload = responses['Workload'][0]
-	const difficulties = responses['Difficulties'][0]
-	const recommended = responses['Recommended'][0]
-	const description = responses['Description'][0]
-	const tips = responses['Tips'][0]
+	const timestamp = responses[0]
+	const reviewer_name = responses[1]
+	const reviewer_email = responses[2]
+	const course_faculty = responses[3]
+
+	// The following course code are enforced by the rule: ^[A-Za-z]{3,4} ?\d{3} ?[A-Za-z]?$
+	const course_code = responses[4].replaceAll(' ', '').toUpperCase() // Clean up course code
+
+	const course_title = responses[5]
+	const reviewer_faculty = responses[6]
+	const reviewer_standing = responses[7]
+	const instructor_name = responses[8]
+	const instructor_rating = responses[9]
+	const workload = responses[10]
+	const difficulties = responses[11]
+	const recommended = responses[12]
+	const description = responses[13]
+	const tips = responses[14]
 
 	// Insert into Users sheet
 	let user_obj = { id: null, name: reviewer_name, email: reviewer_email }
 	appendNewUser(user_obj)
 
 	// Insert into Courses sheet
-	let course_obj = { id: null, faculty: course_faculty, number: course_number, title: course_title }
+	let course_obj = { id: null, faculty: course_faculty, code: course_code, title: course_title }
 	appendNewCourse(course_obj)
 
 	// Insert into Instructors sheet
