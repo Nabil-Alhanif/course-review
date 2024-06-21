@@ -19,7 +19,16 @@ module.exports = {
 		appendNewInstructor: true,
 		appendNewReview: true,
 		getSheetData: true,
+		getUsers: true,
+		getUserById: true,
+		getCourses: true,
+		getCourseById: true,
+		getInstructors: true,
+		getInstructorById: true,
+		getReviews: true,
+		getReviewById: true,
 		generateUUID: true,
+		isObjectEmpty: true,
 		SHEET_NAMES: true
 	},
 	rules: {

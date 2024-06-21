@@ -20,49 +20,107 @@
 
 // Append a new review to the Reviews sheet
 function appendNewReview(data) {
-	const review_sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.REVIEWS)
-	const review_list = review_sheet.getDataRange().getValues()
-
-	let review_exists = false
+	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.REVIEWS)
+	const rows = sheet.getDataRange().getValues()
 
 	// Check if the review already exists
-	review_list.slice(1).forEach((row) => {
-		if (
+	const existingReview = rows.find(
+		(row) =>
 			row[0] === data.id &&
 			row[1] === data.user_id &&
 			row[2] === data.course_id &&
 			row[3] === data.instructor_id
-		) {
-			review_exists = true
-			review.id = row[0]
-		}
-	})
+	)
 
-	// Deconstruct data to make sure everything is in the correct order
-	let review = [
-		data.id,
-		data.user_id,
-		data.course_id,
-		data.instructor_id,
-		data.reviewer_faculty,
-		data.reviewer_standing,
-		data.instructor_rating,
-		data.workload,
-		data.difficulties,
-		data.recommended,
-		data.description,
-		data.tips,
-		data.timestamp
-	]
-
-	if (review_exists) {
+	if (existingReview) {
+		data.id = existingReview[0]
 		Logger.log('Review already exists with the same ID, user, course, and instructor')
 	} else {
 		data.id = generateUUID()
+
+		// Deconstruct data to make sure everything is in the correct order
+		const newReview = [
+			data.id,
+			data.user_id,
+			data.course_id,
+			data.instructor_id,
+			data.reviewer_faculty,
+			data.reviewer_standing,
+			data.instructor_rating,
+			data.workload,
+			data.difficulties,
+			data.recommended,
+			data.description,
+			data.tips,
+			data.timestamp
+		]
+
 		// Append new review to the Reviews sheet
-		review_sheet.appendRow(review)
+		sheet.appendRow(newReview)
 		Logger.log('Inserted new review data into Reviews sheet')
 	}
+}
+
+function getReviews() {
+	return getSheetData('Reviews')
+}
+
+/*
+ * Params: an object containing review_id, user_id, course_id, and instructor_id
+ */
+function getReviewById(params) {
+	Logger.log(params)
+	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.REVIEWS)
+
+	if (!sheet) {
+		// Return error if review sheet is not found
+		return ContentService.createTextOutput(
+			JSON.stringify({
+				error:
+					'Review sheet not found!\nThis is not an intended behaviour, please inform the developers immediately!'
+			})
+		).setMimeType(ContentService.MimeType.JSON)
+	}
+
+	// Check if params is empty, return error if it is
+	if (isObjectEmpty(params)) {
+		return ContentService.createTextOutput(
+			JSON.stringify({
+				error: 'Request contains no IDs!!'
+			})
+		).setMimeType(ContentService.MimeType.JSON)
+	}
+
+	const rows = sheet.getDataRange().getValues()
+	const headers = rows.shift()
+
+	const indexMap = {
+		id: 0,
+		user_id: 1,
+		course_id: 2,
+		instructor_id: 3
+	}
+
+	const matchingReviews = rows.filter((row) => {
+		return Object.entries(params).every(([key, value]) => row[indexMap[key]] === value)
+	})
+
+	if (matchingReviews.length === 0) {
+		return ContentService.createTextOutput(
+			JSON.stringify({ error: 'No reviews found!' })
+		).setMimeType(ContentService.MimeType.JSON)
+	}
+
+	const reviews = matchingReviews.map((reviewRow) => {
+		return headers.reduce((obj, header, index) => {
+			obj[header] = reviewRow[index]
+			return obj
+		}, {})
+	})
+
+	return ContentService.createTextOutput(JSON.stringify(reviews)).setMimeType(
+		ContentService.MimeType.JSON
+	)
 }
 
 /* eslint-enable no-unused-vars */

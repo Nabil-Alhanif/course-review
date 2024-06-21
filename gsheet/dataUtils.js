@@ -10,4 +10,8 @@ function generateUUID() {
 
 	return uuid
 }
+
+function isObjectEmpty(objectName) {
+	return objectName && Object.keys(objectName).length === 0 && objectName.constructor === Object
+}
 /* eslint-enable no-unused-vars */

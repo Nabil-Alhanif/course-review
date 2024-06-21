@@ -7,6 +7,38 @@ function doGet(e) {
 			const sheet_name = e.parameter.sheetName
 			return getSheetData(sheet_name)
 		}
+		case 'getUsers': {
+			return getUsers()
+		}
+		case 'getUserById': {
+			const targetId = e.parameter.targetId
+			return getUserById(targetId)
+		}
+		case 'getCourses': {
+			return getCourses()
+		}
+		case 'getCourseById': {
+			const targetId = e.parameter.targetId
+			return getCourseById(targetId)
+		}
+		case 'getInstructors': {
+			return getInstructors()
+		}
+		case 'getInstructorById': {
+			const targetId = e.parameter.targetId
+			return getInstructorById(targetId)
+		}
+		case 'getReviews': {
+			return getReviews()
+		}
+		case 'getReviewById': {
+			let params = {}
+			if (e.parameter.id) params.id = e.parameter.id
+			if (e.parameter.userId) params.user_id = e.parameter.userId
+			if (e.parameter.courseId) params.course_id = e.parameter.courseId
+			if (e.parameter.instructorId) params.instructor_id = e.parameter.instructorId
+			return getReviewById(params)
+		}
 		default: {
 			return ContentService.createTextOutput(JSON.stringify({ error: 'Invalid action' }))
 		}

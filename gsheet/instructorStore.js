@@ -9,33 +9,68 @@
 
 // Append a new instructor to the Instructors sheet
 function appendNewInstructor(data) {
-	const instructor_sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(
-		SHEET_NAMES.INSTRUCTOR
-	)
-	const instructor_list = instructor_sheet.getDataRange().getValues().slice(1)
-
-	let instructor_exists = false
+	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.INSTRUCTOR)
+	const rows = sheet.getDataRange().getValues().slice(1)
 
 	// Check if the instructor already exists
-	instructor_list.forEach((row) => {
-		if (row[1] == data.name) {
-			instructor_exists = true
-			data.id = row[0]
-		}
-	})
+	const existingInstructor = rows.find((row) => row[1] === data.name)
 
-	if (instructor_exists) {
+	if (existingInstructor) {
+		data.id = existingInstructor[0]
 		Logger.log('Instructor already exists with the same name')
 	} else {
 		data.id = generateUUID()
 
 		// Deconstruct data to make sure everything is in the correct order
-		let instructor = [data.id, data.name]
+		const newInstructor = [data.id, data.name]
 
 		// Insert new instructor into the Instructors sheet
-		instructor_sheet.appendRow(instructor)
+		sheet.appendRow(newInstructor)
 		Logger.log('Inserted new instructor data into Instructors sheet')
 	}
+}
+
+// This is just a wrapper function
+function getInstructors() {
+	return getSheetData('Instructors')
+}
+
+function getInstructorById(targetId) {
+	// Get the sheet for users
+	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.INSTRUCTOR)
+
+	if (!sheet) {
+		// Return error if user sheet is not found
+		return ContentService.createTextOutput(
+			JSON.stringify({
+				error:
+					'Instructor sheet not found!\nThis is not an intended behaviour, please inform the developers immediately!'
+			})
+		).setMimeType(ContentService.MimeType.JSON)
+	}
+
+	// Get the values of each row, remove the first row
+	const rows = sheet.getDataRange().getValues()
+	const headers = rows.shift()
+
+	// Find the instructor with the same id
+	const instructor = rows.find((row) => row[0] === targetId)
+
+	if (!instructor) {
+		return ContentService.createTextOutput(
+			JSON.stringify({ error: 'Instructor not found!' })
+		).setMimeType(ContentService.MimeType.JSON)
+	}
+
+	const instructorData = headers.reduce((obj, header, index) => {
+		obj[header] = instructor[index]
+		return obj
+	}, {})
+
+	// Return the data as JSON
+	return ContentService.createTextOutput(JSON.stringify(instructorData)).setMimeType(
+		ContentService.MimeType.JSON
+	)
 }
 
 /* eslint-enable no-unused-vars */
