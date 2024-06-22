@@ -23,6 +23,7 @@ module.exports = {
 		getUserById: true,
 		getCourses: true,
 		getCourseById: true,
+		getCourseByCode: true,
 		getInstructors: true,
 		getInstructorById: true,
 		getReviews: true,

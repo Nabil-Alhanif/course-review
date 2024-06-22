@@ -34,7 +34,7 @@ const props = defineProps({
 					<div class="w-3/12">
 						<a href="#">
 							<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-								lior
+								{{ review.instructor_name }}
 							</h5>
 						</a>
 						<StarRating :rating="review.instructor_rating" />
@@ -43,7 +43,7 @@ const props = defineProps({
 					<div class="mt-1 w-2/12 font-semibold">Workload: {{ review.workload }}</div>
 					<div class="mt-1 w-2/12 font-semibold">Recommended: {{ review.recommended }}</div>
 				</div>
-				<hr class="mt-2 mb-2">
+				<hr class="mt-2 mb-2" />
 				<h1>About the course:</h1>
 				<p class="mb-3 font-normal text-gray-700 dark:text-gray-700">
 					{{ review.description }}
