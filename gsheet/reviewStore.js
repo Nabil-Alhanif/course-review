@@ -68,7 +68,7 @@ function getReviews() {
 /*
  * Params: an object containing review_id, user_id, course_id, and instructor_id
  */
-function getReviewById(params) {
+function getReviewsById(params) {
 	Logger.log(params)
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.REVIEWS)
 

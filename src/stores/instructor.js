@@ -6,33 +6,31 @@ import { defineStore } from 'pinia'
 const API_URL =
 	'https://script.google.com/macros/s/AKfycbzC-fCdBpr00Qt7Dy2w6u66qEDQ5GDKUXEagKeSjpKF5Ex_WELXqjhbq-xPyjCA-ty3ug/exec'
 
-const courseSchema = {
+const instructorSchema = {
 	type: 'object',
 	properties: {
 		id: { type: 'string', format: 'uuid' },
-		faculty: { type: 'string' },
-		code: { type: 'string' },
-		title: { type: 'string' }
+		name: { type: 'string' }
 	},
-	required: ['id', 'faculty', 'code', 'title']
+	required: ['id', 'faculty']
 }
 
-const multiCourseSchema = {
+const multiInstructorSchema = {
 	type: 'array',
-	items: courseSchema
+	items: instructorSchema
 }
 
 const ajv = new Ajv()
 addFormats(ajv)
 
-const validateCourse = ajv.compile(courseSchema)
-const validateMultiCourse = ajv.compile(multiCourseSchema)
+const validateInstructor = ajv.compile(instructorSchema)
+const validateMultiInstructor = ajv.compile(multiInstructorSchema)
 
-export const useCourseStore = defineStore({
-	id: 'course',
+export const useInstructorStore = defineStore({
+	id: 'instructor',
 	state: () => ({
-		course: null,
-		courses: [],
+		instructor: null,
+		instructors: [],
 		loading: false,
 		error: null
 	}),
@@ -40,22 +38,22 @@ export const useCourseStore = defineStore({
 		//
 	},
 	actions: {
-		async fetchCourses() {
-			this.courses = []
+		async fetchInstructors() {
+			this.instructors = []
 			this.loading = true
 			this.error = null
 
 			try {
 				const response = await axios.get(API_URL, {
-					params: { action: 'getCourses' }
+					params: { action: 'getInstructors' }
 				})
 
 				// Validate the response data against the schema
-				if (!validateMultiCourse(response.data)) {
+				if (!validateMultiInstructor(response.data)) {
 					throw new Error('Invalid response format')
 				}
 
-				this.courses = response.data.sort((a, b) => a.code.localeCompare(b.code))
+				this.instructors = response.data.sort((a, b) => a.code.localeCompare(b.code))
 			} catch (error) {
 				this.error = error
 			} finally {
@@ -63,25 +61,25 @@ export const useCourseStore = defineStore({
 			}
 		},
 
-		async fetchCourseById(id) {
-			this.course = null
+		async fetchInstructorById(id) {
+			this.instructor = null
 			this.loading = true
 			this.error = null
 
 			try {
 				const response = await axios.get(API_URL, {
 					params: {
-						action: 'getCourseById',
+						action: 'getInstructorById',
 						targetId: id
 					}
 				})
 
 				// Validate the response data against the schema
-				if (!validateCourse(response.data)) {
+				if (!validateInstructor(response.data)) {
 					throw new Error('Invalid response format')
 				}
 
-				this.course = response.data
+				this.instructor = response.data
 			} catch (error) {
 				this.error = error
 			} finally {

@@ -26,7 +26,7 @@ module.exports = {
 		getInstructors: true,
 		getInstructorById: true,
 		getReviews: true,
-		getReviewById: true,
+		getReviewsById: true,
 		generateUUID: true,
 		isObjectEmpty: true,
 		SHEET_NAMES: true

@@ -6,33 +6,32 @@ import { defineStore } from 'pinia'
 const API_URL =
 	'https://script.google.com/macros/s/AKfycbzC-fCdBpr00Qt7Dy2w6u66qEDQ5GDKUXEagKeSjpKF5Ex_WELXqjhbq-xPyjCA-ty3ug/exec'
 
-const courseSchema = {
+const userSchema = {
 	type: 'object',
 	properties: {
 		id: { type: 'string', format: 'uuid' },
-		faculty: { type: 'string' },
-		code: { type: 'string' },
-		title: { type: 'string' }
+		name: { type: 'string' },
+		email: { type: 'string', format: 'email' }
 	},
-	required: ['id', 'faculty', 'code', 'title']
+	required: ['id', 'name', 'email']
 }
 
-const multiCourseSchema = {
+const multiUserSchema = {
 	type: 'array',
-	items: courseSchema
+	items: userSchema
 }
 
 const ajv = new Ajv()
 addFormats(ajv)
 
-const validateCourse = ajv.compile(courseSchema)
-const validateMultiCourse = ajv.compile(multiCourseSchema)
+const validateUser = ajv.compile(userSchema)
+const validateMultiUser = ajv.compile(multiUserSchema)
 
-export const useCourseStore = defineStore({
-	id: 'course',
+export const useUserStore = defineStore({
+	id: 'user',
 	state: () => ({
-		course: null,
-		courses: [],
+		user: null,
+		users: [],
 		loading: false,
 		error: null
 	}),
@@ -40,22 +39,22 @@ export const useCourseStore = defineStore({
 		//
 	},
 	actions: {
-		async fetchCourses() {
-			this.courses = []
+		async fetchUsers() {
+			this.users = []
 			this.loading = true
 			this.error = null
 
 			try {
 				const response = await axios.get(API_URL, {
-					params: { action: 'getCourses' }
+					params: { action: 'getUsers' }
 				})
 
 				// Validate the response data against the schema
-				if (!validateMultiCourse(response.data)) {
+				if (!validateMultiUser(response.data)) {
 					throw new Error('Invalid response format')
 				}
 
-				this.courses = response.data.sort((a, b) => a.code.localeCompare(b.code))
+				this.users = response.data.sort((a, b) => a.name.localeCompare(b.name))
 			} catch (error) {
 				this.error = error
 			} finally {
@@ -63,25 +62,25 @@ export const useCourseStore = defineStore({
 			}
 		},
 
-		async fetchCourseById(id) {
-			this.course = null
+		async fetchUserById(id) {
+			this.user = null
 			this.loading = true
 			this.error = null
 
 			try {
 				const response = await axios.get(API_URL, {
 					params: {
-						action: 'getCourseById',
+						action: 'getUserById',
 						targetId: id
 					}
 				})
 
 				// Validate the response data against the schema
-				if (!validateCourse(response.data)) {
+				if (!validateUser(response.data)) {
 					throw new Error('Invalid response format')
 				}
 
-				this.course = response.data
+				this.user = response.data
 			} catch (error) {
 				this.error = error
 			} finally {
