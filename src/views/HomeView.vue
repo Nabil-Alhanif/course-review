@@ -32,7 +32,6 @@ fetchCourses()
 					name="course-name"
 					placeholder="Course Name"
 					class="main-search-text"
-
 				/>
 			</form>
 		</div>

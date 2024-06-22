@@ -98,7 +98,9 @@ import ReviewCard from '@/components/ReviewCard.vue'
 			</section>
 
 			<section class="mt-20 max-md:mt-10 max-md:max-w-full">
-				<h3 class="text-2xl leading-9 font-medium text-slate-700 text-center mb-10 border-b-[1px] p-4">
+				<h3
+					class="text-2xl leading-9 font-medium text-slate-700 text-center mb-10 border-b-[1px] p-4"
+				>
 					See what other students have to say
 				</h3>
 				<div class="mt-4 max-md:max-w-full space-y-6 mb-20">

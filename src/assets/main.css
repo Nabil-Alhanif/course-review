@@ -35,7 +35,6 @@ main {
 	font-size: 20px;
 }
 
-
 .gambar2 {
 	width: 735px;
 	height: 642px;
@@ -48,8 +47,8 @@ main {
 	background-color: red;
 }
 
-.spaced-text br{
+.spaced-text br {
 	display: block;
 	margin-bottom: 7px;
-	content: "";
+	content: '';
 }
