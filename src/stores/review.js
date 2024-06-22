@@ -16,6 +16,7 @@ const reviewSchema = {
 		instructor_id: { type: 'string', format: 'uuid' },
 		reviewer_faculty: { type: 'string' },
 		reviewer_standing: { type: 'string' },
+		instructor_name: { type: 'string' },
 		instructor_rating: { type: 'integer' },
 		workload: { type: 'integer' },
 		difficulties: { type: 'integer' },
@@ -31,6 +32,7 @@ const reviewSchema = {
 		'instructor_id',
 		'reviewer_faculty',
 		'reviewer_standing',
+		'instructor_name',
 		'instructor_rating',
 		'workload',
 		'difficulties',
@@ -70,23 +72,7 @@ export const useReviewStore = defineStore({
 		error: null
 	}),
 	getters: {
-		// All of this are deprecated, but I'll leave it be for now
-		getDeptList: (state) => {
-			// Okay so don't use this one, but I'll keep it here
-			const depts = state.reviews.map((reviews) => reviews.course_number)
-			return [...new Set(depts)]
-		},
-		getMajorList: (state) => {
-			const majors = state.reviews.map((reviews) => reviews.course_number.split(' ')[0])
-			return [...new Set(majors)].sort()
-		},
-		getCourseByMajor: (state) => (major) => {
-			const reviewOfMajor = state.reviews.filter((reviews) =>
-				reviews.course_number.startsWith(major)
-			)
-			const courses = reviewOfMajor.map((reviewOfMajor) => reviewOfMajor.course_number)
-			return [...new Set(courses)].sort()
-		}
+		//
 	},
 	actions: {
 		async fetchReviews() {

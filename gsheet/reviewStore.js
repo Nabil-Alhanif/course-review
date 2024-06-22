@@ -6,6 +6,7 @@
  *     instructor_id: UUID
  *     reviewer_faculty: String
  *     reviewer_standing: String
+ *     instructor_name: String
  *     instructor_rating: Integer
  *     workload: Integer
  *     difficulties: Integer
@@ -46,6 +47,7 @@ function appendNewReview(data) {
 			data.instructor_id,
 			data.reviewer_faculty,
 			data.reviewer_standing,
+			data.instructor_name,
 			data.instructor_rating,
 			data.workload,
 			data.difficulties,

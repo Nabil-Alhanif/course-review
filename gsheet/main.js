@@ -92,6 +92,7 @@ function onFormSubmit(e) {
 		instructor_id: instructor_obj.id,
 		reviewer_faculty: reviewer_faculty,
 		reviewer_standing: reviewer_standing,
+		instructor_name: instructor_name,
 		instructor_rating: instructor_rating,
 		workload: workload,
 		difficulties: difficulties,
