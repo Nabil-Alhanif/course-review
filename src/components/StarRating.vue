@@ -17,7 +17,7 @@ const getClass = (star) => {
 </script>
 
 <template>
-	<div class="mt-4 flex justify-center items-center">
+	<div class="mt-0.5 flex items-center ml-3">
 		<div v-for="star in 5" :key="star">
 			<svg
 				class="w-4 h-4 me-1"

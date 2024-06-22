@@ -34,17 +34,16 @@ const props = defineProps({
 					<div class="w-3/12">
 						<a href="#">
 							<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-								{{ review.instructor_id }}
+								lior
 							</h5>
 						</a>
+						<StarRating :rating="review.instructor_rating" />
 					</div>
-
-					<StarRating :rating="review.instructor_rating" />
-
-					<div class="mb-2 w-2/12 font-semibold">Difficulty: {{ review.difficulties }}</div>
-					<div class="mb-2 w-2/12 font-semibold">Workload: {{ review.workload }}</div>
+					<div class="mt-1 w-2/12 font-semibold">Difficulty: {{ review.difficulties }}</div>
+					<div class="mt-1 w-2/12 font-semibold">Workload: {{ review.workload }}</div>
+					<div class="mt-1 w-2/12 font-semibold">Recommended: {{ review.recommended }}</div>
 				</div>
-
+				<hr class="mt-2 mb-2">
 				<h1>About the course:</h1>
 				<p class="mb-3 font-normal text-gray-700 dark:text-gray-700">
 					{{ review.description }}
@@ -62,16 +61,19 @@ const props = defineProps({
 					<div>
 						<table class="flex-col">
 							<tr>
-								<td>Faculty:</td>
+								<td>Faculty</td>
+								<td>:</td>
 								<td>{{ review.reviewer_faculty }}</td>
 							</tr>
 							<tr>
-								<td>Standing:</td>
+								<td>Standing</td>
+								<td>:</td>
 								<td>{{ review.reviewer_standing }}</td>
 							</tr>
 							<tr>
-								<td>Recommended:</td>
-								<td>{{ review.recommended }}</td>
+								<td>Date of review</td>
+								<td>:</td>
+								<td>{{ review.timestamp }}</td>
 							</tr>
 						</table>
 					</div>
