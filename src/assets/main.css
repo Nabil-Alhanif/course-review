@@ -35,16 +35,6 @@ main {
 	font-size: 20px;
 }
 
-table {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-td,
-tr {
-	padding: 16px;
-}
 
 .gambar2 {
 	width: 735px;
@@ -56,4 +46,10 @@ tr {
 	width: 515px;
 	height: 244px;
 	background-color: red;
+}
+
+.spaced-text br{
+	display: block;
+	margin-bottom: 7px;
+	content: "";
 }
