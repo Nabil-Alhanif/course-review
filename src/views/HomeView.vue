@@ -13,16 +13,16 @@ fetchCourses()
 
 <template>
 	<main>
-		<h1
-			className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl text-center"
+		<div
+			className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl  text-center items-center content-center justify-center bg-red-200 flex flex-col"
 		>
 			<span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
 				BIM at UBC
 			</span>
-			<div className="text-xl font-semibold text-gray-700">
-				Course <span className="italic underline font-bold text-cyan-500"> Review</span>
+			<div className="lg:text-xl md:text-lg text-base font-semibold text-gray-700">
+				Course <span className="italic underline font-bold text-cyan-500">Review</span>
 			</div>
-		</h1>
+		</div>
 
 		<div>
 			<form action="" class="main-search">
@@ -42,10 +42,12 @@ fetchCourses()
 			{{ error.message }}
 		</p>
 
-		<div className="flex justify-center " v-if="courses">
-			<div class="grid grid-cols-3 gap-3 w-5/6">
-				<div class="max-w-sm" v-for="course in courses" :key="course.id">
-					<CourseCard :course="course" />
+		<div className="w-full flex  justify-center items-center relative " v-if="courses">
+			<div className="items-center justify-center flex">
+				<div class="md:grid md:grid-cols-3  gap-3 md:w-5/6 w-full space-y-4 md:space-y-0   justify-center items-center">
+					<div class="max-w-sm  block " v-for="course in courses" :key="course.id">
+						<CourseCard :course="course" />
+					</div>
 				</div>
 			</div>
 		</div>
