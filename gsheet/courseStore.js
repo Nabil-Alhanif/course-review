@@ -77,4 +77,42 @@ function getCourseById(targetId) {
 		ContentService.MimeType.JSON
 	)
 }
+
+function getCourseByCode(targetCode) {
+	// Get the sheet for users
+	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.COURSES)
+
+	if (!sheet) {
+		// Return error if user sheet is not found
+		return ContentService.createTextOutput(
+			JSON.stringify({
+				error:
+					'Courses sheet not found!\nThis is not an intended behaviour, please inform the developers immediately!'
+			})
+		).setMimeType(ContentService.MimeType.JSON)
+	}
+
+	// Get the values of each row, remove the first row
+	const rows = sheet.getDataRange().getValues()
+	const headers = rows.shift()
+
+	// Find the course with the same code
+	const course = rows.find((row) => row[2] === targetCode)
+
+	if (!course) {
+		return ContentService.createTextOutput(
+			JSON.stringify({ error: 'Course not found!' })
+		).setMimeType(ContentService.MimeType.JSON)
+	}
+
+	const courseData = headers.reduce((obj, header, index) => {
+		obj[header] = course[index]
+		return obj
+	}, {})
+
+	// Return the data as JSON
+	return ContentService.createTextOutput(JSON.stringify(courseData)).setMimeType(
+		ContentService.MimeType.JSON
+	)
+}
 /* eslint-enable no-unused-vars */

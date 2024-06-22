@@ -21,6 +21,10 @@ function doGet(e) {
 			const targetId = e.parameter.targetId
 			return getCourseById(targetId)
 		}
+		case 'getCourseByCode': {
+			const targetCode = e.parameter.targetCode
+			return getCourseByCode(targetCode)
+		}
 		case 'getInstructors': {
 			return getInstructors()
 		}

@@ -23,7 +23,7 @@ const router = createRouter({
 			component: () => import('@/views/MultiReviewView.vue')
 		},
 		{
-			path: '/course',
+			path: '/course/:code',
 			name: 'course',
 			component: () => import('@/views/CourseView.vue')
 		},

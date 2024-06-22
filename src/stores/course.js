@@ -87,6 +87,32 @@ export const useCourseStore = defineStore({
 			} finally {
 				this.loading = false
 			}
+		},
+
+		async fetchCourseByCode(code) {
+			this.course = null
+			this.loading = true
+			this.error = null
+
+			try {
+				const response = await axios.get(API_URL, {
+					params: {
+						action: 'getCourseByCode',
+						targetCode: code
+					}
+				})
+
+				// Validate the response data against the schema
+				if (!validateCourse(response.data)) {
+					throw new Error('Invalid response format')
+				}
+
+				this.course = response.data
+			} catch (error) {
+				this.error = error
+			} finally {
+				this.loading = false
+			}
 		}
 	}
 })
