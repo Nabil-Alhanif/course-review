@@ -55,7 +55,8 @@ export const useInstructorStore = defineStore({
 
 				this.instructors = response.data.sort((a, b) => a.code.localeCompare(b.code))
 			} catch (error) {
-				this.error = error
+				this.error = error.message || 'An error occured'
+				throw { status: error.status || 500, message: this.error }
 			} finally {
 				this.loading = false
 			}
@@ -81,7 +82,8 @@ export const useInstructorStore = defineStore({
 
 				this.instructor = response.data
 			} catch (error) {
-				this.error = error
+				this.error = error.message
+				throw { status: error.status || 500, message: this.error }
 			} finally {
 				this.loading = false
 			}

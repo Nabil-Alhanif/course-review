@@ -57,7 +57,8 @@ export const useCourseStore = defineStore({
 
 				this.courses = response.data.sort((a, b) => a.code.localeCompare(b.code))
 			} catch (error) {
-				this.error = error
+				this.error = error.message || 'An error occured'
+				throw { status: error.message || 500, message: this.error }
 			} finally {
 				this.loading = false
 			}
@@ -83,7 +84,8 @@ export const useCourseStore = defineStore({
 
 				this.course = response.data
 			} catch (error) {
-				this.error = error
+				this.error = error.message || 'An error occured'
+				throw { status: error.status || 500, message: this.error }
 			} finally {
 				this.loading = false
 			}
@@ -109,7 +111,8 @@ export const useCourseStore = defineStore({
 
 				this.course = response.data
 			} catch (error) {
-				this.error = error
+				this.error = error.message || 'An error occured'
+				throw { status: error.status || 500, message: this.error }
 			} finally {
 				this.loading = false
 			}

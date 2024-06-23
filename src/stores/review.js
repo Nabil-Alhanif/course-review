@@ -92,7 +92,8 @@ export const useReviewStore = defineStore({
 
 				this.reviews = sortReviewsByDate(response.data)
 			} catch (error) {
-				this.error = error
+				this.error = error.message || 'An error occured'
+				throw { status: error.status || 500, message: this.error }
 			} finally {
 				this.loading = false
 			}
@@ -123,7 +124,8 @@ export const useReviewStore = defineStore({
 
 				this.reviews = sortReviewsByDate(response.data)
 			} catch (error) {
-				this.error = error
+				this.error = error.message || 'An error occured'
+				throw { status: error.status || 500, message: this.error }
 			} finally {
 				this.loading = false
 			}

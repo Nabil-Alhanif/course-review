@@ -56,7 +56,8 @@ export const useUserStore = defineStore({
 
 				this.users = response.data.sort((a, b) => a.name.localeCompare(b.name))
 			} catch (error) {
-				this.error = error
+				this.error = error.message || 'An error occured'
+				throw { status: error.status || 500, message: this.error }
 			} finally {
 				this.loading = false
 			}
@@ -82,7 +83,8 @@ export const useUserStore = defineStore({
 
 				this.user = response.data
 			} catch (error) {
-				this.error = error
+				this.error = error.message || 'An error occured'
+				throw { status: error.status || 500, message: this.error }
 			} finally {
 				this.loading = false
 			}

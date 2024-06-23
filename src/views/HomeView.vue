@@ -1,14 +1,26 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCourseStore } from '@/stores/course'
 import CourseCard from '@/components/CourseCard.vue'
 
 const courseStore = useCourseStore()
-const { courses, loading, error } = storeToRefs(courseStore)
-const { fetchCourses } = courseStore
+const { courses, loading } = storeToRefs(courseStore)
 
-fetchCourses()
+const error = ref(null)
+
+const fetchCourses = async () => {
+	error.value = null
+	try {
+		await courseStore.fetchCourses()
+	} catch (err) {
+		error.value = err
+	}
+}
+
+onMounted(() => {
+	fetchCourses()
+})
 </script>
 
 <template>
