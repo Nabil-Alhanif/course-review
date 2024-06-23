@@ -14,4 +14,17 @@ function generateUUID() {
 function isObjectEmpty(objectName) {
 	return objectName && Object.keys(objectName).length === 0 && objectName.constructor === Object
 }
+
+function specialCharForJSON(inputText) {
+	// Replace backslashes with double backslashes
+	let text = inputText.replace(/\\/g, '\\\\')
+
+	// Replace double quotes with escaped double quotes
+	text = text.replace(/"/g, '\\"')
+
+	// Replace new line charactesr with \n
+	text = text.replace(/\n/g, '\\n')
+
+	return text
+}
 /* eslint-enable no-unused-vars */

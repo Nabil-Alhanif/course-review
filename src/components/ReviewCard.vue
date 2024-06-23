@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import StarRating from '@/components/StarRating.vue'
@@ -24,6 +25,16 @@ const props = defineProps({
 		})
 	}
 })
+
+const renderedDesc = computed(() => {
+	let formatted = props.review.description.replace(/\n/g, '<br>')
+	return `<p>${formatted}</p>`
+})
+
+const renderedTips = computed(() => {
+	let formatted = props.review.tips.replace(/\n/g, '<br>')
+	return `<p>${formatted}</p>`
+})
 </script>
 
 <template>
@@ -44,15 +55,12 @@ const props = defineProps({
 					<div class="mt-1 w-2/12 font-semibold">Recommended: {{ review.recommended }}</div>
 				</div>
 				<hr class="mt-2 mb-2" />
+
 				<h1>About the course:</h1>
-				<p class="mb-3 font-normal text-gray-700 dark:text-gray-700">
-					{{ review.description }}
-				</p>
+				<div class="mb-3 font-normal text-gray-700 dark:text-gray-700" v-html="renderedDesc"></div>
 
 				<h1>Tips to excel:</h1>
-				<p class="mb-3 font-normal text-gray-700 dark:text-gray-700">
-					{{ review.tips }}
-				</p>
+				<div class="mb-3 font-normal text-gray-700 dark:text-gray-700" v-html="renderedTips"></div>
 			</div>
 
 			<div>

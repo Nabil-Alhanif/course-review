@@ -9,7 +9,7 @@
  *     instructor_name: String
  *     instructor_rating: Integer
  *     workload: Integer
- *     difficulties: Integer
+ *     difficulty: Integer
  *     recommended: String
  *     description: String
  *     tips: String
@@ -50,7 +50,7 @@ function appendNewReview(data) {
 			data.instructor_name,
 			data.instructor_rating,
 			data.workload,
-			data.difficulties,
+			data.difficulty,
 			data.recommended,
 			data.description,
 			data.tips,

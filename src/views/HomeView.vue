@@ -44,8 +44,10 @@ fetchCourses()
 
 		<div className="w-full flex  justify-center items-center relative " v-if="courses">
 			<div className="items-center justify-center flex">
-				<div class="md:grid md:grid-cols-3  gap-3 md:w-5/6 w-full space-y-4 md:space-y-0   justify-center items-center">
-					<div class="max-w-sm  block " v-for="course in courses" :key="course.id">
+				<div
+					class="md:grid md:grid-cols-3 gap-3 md:w-5/6 w-full space-y-4 md:space-y-0 justify-center items-center"
+				>
+					<div class="max-w-sm block" v-for="course in courses" :key="course.id">
 						<CourseCard :course="course" />
 					</div>
 				</div>

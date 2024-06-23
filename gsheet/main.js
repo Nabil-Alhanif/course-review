@@ -67,7 +67,7 @@ function onFormSubmit(e) {
 	const instructor_name = responses[8]
 	const instructor_rating = responses[9]
 	const workload = responses[10]
-	const difficulties = responses[11]
+	const difficulty = responses[11]
 	const recommended = responses[12]
 	const description = responses[13]
 	const tips = responses[14]
@@ -95,7 +95,7 @@ function onFormSubmit(e) {
 		instructor_name: instructor_name,
 		instructor_rating: instructor_rating,
 		workload: workload,
-		difficulties: difficulties,
+		difficulty: difficulty,
 		recommended: recommended,
 		description: description,
 		tips: tips,
