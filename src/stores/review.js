@@ -129,7 +129,6 @@ export const useReviewStore = defineStore({
 
 				// Validate the response data against the schema
 				if (!validateMultiReview(response.data)) {
-					console.log(response.data)
 					throw new Error('Invalid response format')
 				}
 
