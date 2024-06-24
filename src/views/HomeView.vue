@@ -5,6 +5,9 @@ import { useCourseStore } from '@/stores/course'
 import CourseCard from '@/components/CourseCard.vue'
 
 const courseStore = useCourseStore()
+
+// Desctructuring courses and loading state from the store
+// TODO: Might change this to computed
 const { courses, loading } = storeToRefs(courseStore)
 
 const error = ref(null)
@@ -25,6 +28,7 @@ onMounted(() => {
 
 <template>
 	<main>
+		<!-- Header Section -->
 		<div
 			className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl  text-center items-center content-center justify-center bg-red-200 flex flex-col"
 		>
@@ -36,6 +40,7 @@ onMounted(() => {
 			</div>
 		</div>
 
+		<!-- Search Form -->
 		<div>
 			<form action="" class="main-search">
 				<input
@@ -48,12 +53,13 @@ onMounted(() => {
 			</form>
 		</div>
 
+		<!-- Loading and Error messages -->
 		<p v-if="loading">Loading...</p>
-
 		<p v-if="error">
 			{{ error.message }}
 		</p>
 
+		<!-- Courses grid -->
 		<div className="w-full flex  justify-center items-center relative " v-if="courses">
 			<div className="items-center justify-center flex">
 				<div

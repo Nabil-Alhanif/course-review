@@ -29,6 +29,7 @@ watch(
 	{ immediate: true }
 )
 
+// Fetch course details by course code
 const fetchCourseByCode = async (courseCode) => {
 	courseError.value = null
 	try {
@@ -38,6 +39,7 @@ const fetchCourseByCode = async (courseCode) => {
 	}
 }
 
+// Fetch reviews by course ID
 const fetchReviewsById = async (courseId) => {
 	reviewError.value = null
 	try {
@@ -74,8 +76,11 @@ onMounted(() => {
 <template>
 	<div class="flex flex-col bg-white">
 		<main class="flex flex-col pt-4 px-20 w-full max-md:px-5 max-md:max-w-full">
+			<!-- Loading and error messages for course data -->
 			<p v-if="courseStore.loading">Loading course information....</p>
 			<p v-else-if="courseError">{{ courseError.message }}</p>
+
+			<!-- Display course details if available -->
 			<section v-else-if="course" class="max-md:max-w-full">
 				<div class="flex gap-5 max-md:flex-col max-md:gap-0">
 					<div class="flex flex-col w-[56%] max-md:ml-0 max-md:w-full items-center justify-center">
@@ -98,6 +103,7 @@ onMounted(() => {
 								{{ course.title }}
 							</p>
 
+							<!-- Display average difficulty and workload ratings -->
 							<div v-if="averageDifficulty !== null">
 								<p>Difficulty</p>
 								<StarRating :rating="averageDifficulty" />
@@ -121,6 +127,7 @@ onMounted(() => {
 			<p v-if="!course">Waiting for course to be loaded...</p>
 			<p v-else-if="reviewStore.loading">Loading reviews...</p>
 			<p v-else-if="reviewError">{{ reviewError.message }}</p>
+
 			<section v-else-if="reviews" class="mt-20 max-md:mt-10 max-md:max-w-full">
 				<h3
 					class="text-2xl leading-9 font-medium text-slate-700 text-center mb-10 border-b-[1px] p-4"

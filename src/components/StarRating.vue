@@ -32,7 +32,9 @@ const getClass = (star) => {
 				/>
 			</svg>
 		</div>
-		<p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">{{ rating }} out of 5</p>
+		<p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
+			{{ rating.toFixed(2) }} out of 5
+		</p>
 	</div>
 </template>
 
