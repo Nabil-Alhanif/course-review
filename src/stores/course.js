@@ -50,6 +50,11 @@ export const useCourseStore = defineStore({
 					params: { action: 'getCourses' }
 				})
 
+				// Check if the api call returns an error
+				if (response.data.error) {
+					throw new Error(response.data.error)
+				}
+
 				// Validate the response data against the schema
 				if (!validateMultiCourse(response.data)) {
 					throw new Error('Invalid response format')
@@ -77,6 +82,11 @@ export const useCourseStore = defineStore({
 					}
 				})
 
+				// Check if the api call returns an error
+				if (response.data.error) {
+					throw new Error(response.data.error)
+				}
+
 				// Validate the response data against the schema
 				if (!validateCourse(response.data)) {
 					throw new Error('Invalid response format')
@@ -103,6 +113,11 @@ export const useCourseStore = defineStore({
 						targetCode: code
 					}
 				})
+
+				// Check if the api call returns an error
+				if (response.data.error) {
+					throw new Error(response.data.error)
+				}
 
 				// Validate the response data against the schema
 				if (!validateCourse(response.data)) {

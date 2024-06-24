@@ -48,6 +48,11 @@ export const useInstructorStore = defineStore({
 					params: { action: 'getInstructors' }
 				})
 
+				// Check if the api call returns an error
+				if (response.data.error) {
+					throw new Error(response.data.error)
+				}
+
 				// Validate the response data against the schema
 				if (!validateMultiInstructor(response.data)) {
 					throw new Error('Invalid response format')
@@ -74,6 +79,11 @@ export const useInstructorStore = defineStore({
 						targetId: id
 					}
 				})
+
+				// Check if the api call returns an error
+				if (response.data.error) {
+					throw new Error(response.data.error)
+				}
 
 				// Validate the response data against the schema
 				if (!validateInstructor(response.data)) {

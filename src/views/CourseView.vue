@@ -18,17 +18,6 @@ const reviewError = ref(null)
 const course = computed(() => courseStore.course)
 const reviews = computed(() => reviewStore.reviews)
 
-// Watcher to fetch reviews when the course is loaded
-watch(
-	course,
-	(loadedCourse) => {
-		if (loadedCourse) {
-			fetchReviewsById(loadedCourse.id)
-		}
-	},
-	{ immediate: true }
-)
-
 // Fetch course details by course code
 const fetchCourseByCode = async (courseCode) => {
 	courseError.value = null
@@ -71,6 +60,17 @@ const averageWorkload = computed(() => {
 onMounted(() => {
 	fetchCourseByCode(route.params.code)
 })
+
+// Watcher to fetch reviews when the course is loaded
+watch(
+	course,
+	(loadedCourse) => {
+		if (loadedCourse) {
+			fetchReviewsById(loadedCourse.id)
+		}
+	},
+	{ immediate: true }
+)
 </script>
 
 <template>

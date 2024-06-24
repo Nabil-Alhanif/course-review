@@ -49,6 +49,11 @@ export const useUserStore = defineStore({
 					params: { action: 'getUsers' }
 				})
 
+				// Check if the api call returns an error
+				if (response.data.error) {
+					throw new Error(response.data.error)
+				}
+
 				// Validate the response data against the schema
 				if (!validateMultiUser(response.data)) {
 					throw new Error('Invalid response format')
@@ -75,6 +80,11 @@ export const useUserStore = defineStore({
 						targetId: id
 					}
 				})
+
+				// Check if the api call returns an error
+				if (response.data.error) {
+					throw new Error(response.data.error)
+				}
 
 				// Validate the response data against the schema
 				if (!validateUser(response.data)) {
