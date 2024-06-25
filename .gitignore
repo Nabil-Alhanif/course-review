@@ -34,4 +34,7 @@ gsheet/.clasp.json
 # Env files
 .env
 
+# Readme ai outputs
+readme-ai.*
+
 *.tsbuildinfo
