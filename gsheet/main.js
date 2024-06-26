@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars */
-// Handle GET requests
+/**
+ * Function to handle get requests
+ * @param {object} e - Event given by the request
+ */
 function doGet(e) {
 	const action = e.parameter.action
 	switch (action) {
@@ -49,7 +52,10 @@ function doGet(e) {
 	}
 }
 
-// Process form submission
+/**
+ * Trigger on form submission
+ * @param {object} e - Event triggered by form submission
+ */
 function onFormSubmit(e) {
 	const responses = e.values
 

@@ -1,31 +1,3 @@
-<script setup>
-import { ref, onMounted } from 'vue'
-import { storeToRefs } from 'pinia'
-import { useCourseStore } from '@/stores/course'
-import CourseCard from '@/components/CourseCard.vue'
-
-const courseStore = useCourseStore()
-
-// Desctructuring courses and loading state from the store
-// TODO: Might change this to computed
-const { courses, loading } = storeToRefs(courseStore)
-
-const error = ref(null)
-
-const fetchCourses = async () => {
-	error.value = null
-	try {
-		await courseStore.fetchCourses()
-	} catch (err) {
-		error.value = err
-	}
-}
-
-onMounted(() => {
-	fetchCourses()
-})
-</script>
-
 <template>
 	<main>
 		<!-- Header Section -->
@@ -74,10 +46,32 @@ onMounted(() => {
 	</main>
 </template>
 
-<style lang="scss" scoped>
-.course-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 16px;
+<script setup>
+import { ref, onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useCourseStore } from '@/stores/course'
+import CourseCard from '@/components/CourseCard.vue'
+
+const courseStore = useCourseStore()
+
+// Desctructuring courses and loading state from the store
+// TODO: Might change this to computed
+const { courses, loading } = storeToRefs(courseStore)
+
+const error = ref(null)
+
+const fetchCourses = async () => {
+	error.value = null
+	try {
+		await courseStore.fetchCourses()
+	} catch (err) {
+		error.value = err
+	}
 }
-</style>
+
+onMounted(() => {
+	fetchCourses()
+})
+</script>
+
+<style lang="scss" scoped></style>

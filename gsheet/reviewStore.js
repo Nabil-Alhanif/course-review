@@ -19,7 +19,10 @@
 
 /* eslint-disable no-unused-vars */
 
-// Append a new review to the Reviews sheet
+/**
+ * Append a new review to the Review sheet
+ * @param {Object} data - The review data to be appended
+ */
 function appendNewReview(data) {
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.REVIEWS)
 	const rows = sheet.getDataRange().getValues()
@@ -63,12 +66,14 @@ function appendNewReview(data) {
 	}
 }
 
+// Wrapper function to get all reviews
 function getReviews() {
 	return getSheetData('Reviews')
 }
 
-/*
- * Params: an object containing review_id, user_id, course_id, and instructor_id
+/**
+ * Function to get review by review_id, user_id, course_id, or instructor_id
+ * @params {Object} params -  an object containing review_id, user_id, course_id, and instructor_id
  */
 function getReviewsById(params) {
 	Logger.log(params)

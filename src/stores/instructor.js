@@ -6,6 +6,7 @@ import { defineStore } from 'pinia'
 const API_URL =
 	'https://script.google.com/macros/s/AKfycbzC-fCdBpr00Qt7Dy2w6u66qEDQ5GDKUXEagKeSjpKF5Ex_WELXqjhbq-xPyjCA-ty3ug/exec'
 
+// Schema definition for a single instructor
 const instructorSchema = {
 	type: 'object',
 	properties: {
@@ -15,6 +16,7 @@ const instructorSchema = {
 	required: ['id', 'faculty']
 }
 
+// Schema definition for multiple instructors (array of instructors)
 const multiInstructorSchema = {
 	type: 'array',
 	items: instructorSchema
@@ -27,12 +29,12 @@ const validateInstructor = ajv.compile(instructorSchema)
 const validateMultiInstructor = ajv.compile(multiInstructorSchema)
 
 export const useInstructorStore = defineStore({
-	id: 'instructor',
+	id: 'instructor', // Unique ID for the store
 	state: () => ({
-		instructor: null,
-		instructors: [],
-		loading: false,
-		error: null
+		instructor: null, // Holds data for a single instructor
+		instructors: [], // Holds data for multiple instructor
+		loading: false, // Indicates loading state
+		error: null // Holds error messages
 	}),
 	getters: {
 		//

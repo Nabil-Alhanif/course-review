@@ -1,78 +1,3 @@
-<script setup>
-import { ref, onMounted, computed, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { useCourseStore } from '@/stores/course'
-import { useReviewStore } from '@/stores/review'
-
-import IconRating from '@/components/IconRating.vue'
-import ReviewCard from '@/components/ReviewCard.vue'
-
-const route = useRoute()
-const courseStore = useCourseStore()
-const reviewStore = useReviewStore()
-
-const courseError = ref(null)
-const reviewError = ref(null)
-
-// Computed properties to get course and reviews from their respective stores
-const course = computed(() => courseStore.course)
-const reviews = computed(() => reviewStore.reviews)
-
-// Fetch course details by course code
-const fetchCourseByCode = async (courseCode) => {
-	courseError.value = null
-	try {
-		await courseStore.fetchCourseByCode(courseCode)
-	} catch (err) {
-		courseError.value = err
-	}
-}
-
-// Fetch reviews by course ID
-const fetchReviewsById = async (courseId) => {
-	reviewError.value = null
-	try {
-		await reviewStore.fetchReviewsById({ courseId: courseId })
-	} catch (err) {
-		reviewError.value = err
-	}
-}
-
-// Format course code for display
-const formattedCode = computed(() => {
-	return course?.value?.code.replace(/(\D)(\d)/, '$1 $2')
-})
-
-// Compute average difficulty rating
-const averageDifficulty = computed(() => {
-	if (!reviews.value.length) return null
-	const totalDifficulty = reviews.value.reduce((acc, review) => acc + review.difficulties, 0)
-	return totalDifficulty / reviews.value.length
-})
-
-// Compute average workload
-const averageWorkload = computed(() => {
-	if (!reviews.value.length) return null
-	const totalWorkload = reviews.value.reduce((acc, review) => acc + review.workload, 0)
-	return totalWorkload / reviews.value.length
-})
-
-onMounted(() => {
-	fetchCourseByCode(route.params.code)
-})
-
-// Watcher to fetch reviews when the course is loaded
-watch(
-	course,
-	(loadedCourse) => {
-		if (loadedCourse) {
-			fetchReviewsById(loadedCourse.id)
-		}
-	},
-	{ immediate: true }
-)
-</script>
-
 <template>
 	<div class="flex flex-col bg-white">
 		<main class="flex flex-col pt-4 px-20 w-full max-md:px-5 max-md:max-w-full">
@@ -152,5 +77,80 @@ watch(
 		</main>
 	</div>
 </template>
+
+<script setup>
+import { ref, onMounted, computed, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { useCourseStore } from '@/stores/course'
+import { useReviewStore } from '@/stores/review'
+
+import IconRating from '@/components/IconRating.vue'
+import ReviewCard from '@/components/ReviewCard.vue'
+
+const route = useRoute()
+const courseStore = useCourseStore()
+const reviewStore = useReviewStore()
+
+const courseError = ref(null)
+const reviewError = ref(null)
+
+// Computed properties to get course and reviews from their respective stores
+const course = computed(() => courseStore.course)
+const reviews = computed(() => reviewStore.reviews)
+
+// Fetch course details by course code
+const fetchCourseByCode = async (courseCode) => {
+	courseError.value = null
+	try {
+		await courseStore.fetchCourseByCode(courseCode)
+	} catch (err) {
+		courseError.value = err
+	}
+}
+
+// Fetch reviews by course ID
+const fetchReviewsById = async (courseId) => {
+	reviewError.value = null
+	try {
+		await reviewStore.fetchReviewsById({ courseId: courseId })
+	} catch (err) {
+		reviewError.value = err
+	}
+}
+
+// Format course code for display
+const formattedCode = computed(() => {
+	return course?.value?.code.replace(/(\D)(\d)/, '$1 $2')
+})
+
+// Compute average difficulty rating
+const averageDifficulty = computed(() => {
+	if (!reviews.value.length) return null
+	const totalDifficulty = reviews.value.reduce((acc, review) => acc + review.difficulties, 0)
+	return totalDifficulty / reviews.value.length
+})
+
+// Compute average workload
+const averageWorkload = computed(() => {
+	if (!reviews.value.length) return null
+	const totalWorkload = reviews.value.reduce((acc, review) => acc + review.workload, 0)
+	return totalWorkload / reviews.value.length
+})
+
+// Watcher to fetch reviews when the course is loaded
+watch(
+	course,
+	(loadedCourse) => {
+		if (loadedCourse) {
+			fetchReviewsById(loadedCourse.id)
+		}
+	},
+	{ immediate: true }
+)
+
+onMounted(() => {
+	fetchCourseByCode(route.params.code)
+})
+</script>
 
 <style></style>

@@ -1,7 +1,3 @@
-<script setup>
-import { RouterLink } from 'vue-router'
-</script>
-
 <template>
 	<nav>
 		<div class="navbar-container">
@@ -9,20 +5,24 @@ import { RouterLink } from 'vue-router'
 				<img src="../assets/logo.svg" alt="Vue" />
 			</RouterLink>
 
+			<!-- Navigation menu -->
 			<ul class="navbar-menu">
+				<!-- Home link -->
 				<li class="navbar-item">
 					<RouterLink to="/" class="navbar-link">Home</RouterLink>
 				</li>
+				<!-- About link -->
 				<li class="navbar-item">
 					<RouterLink to="/about" class="navbar-link">About</RouterLink>
-				</li>
-				<li class="navbar-item">
-					<RouterLink to="/reviews" class="navbar-link">Reviews</RouterLink>
 				</li>
 			</ul>
 		</div>
 	</nav>
 </template>
+
+<script setup>
+import { RouterLink } from 'vue-router'
+</script>
 
 <style lang="scss" scoped>
 nav {
@@ -31,7 +31,6 @@ nav {
 		align-items: center;
 		justify-content: space-between;
 		margin: 1rem 1rem;
-
 		position: relative;
 
 		.navbar-logo {

@@ -8,7 +8,10 @@
 
 /* eslint-disable no-unused-vars */
 
-// Append a new user to the Users sheet
+/**
+ * Append a new user to the User sheet
+ * @param {Object} data - The user data to be appended
+ */
 function appendNewUser(data) {
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.USERS)
 	const rows = sheet.getDataRange().getValues().slice(1)
@@ -31,7 +34,7 @@ function appendNewUser(data) {
 	}
 }
 
-// This is just a wrapper function
+// Wrapper function to get all users
 function getUsers() {
 	return getSheetData('Users')
 }
@@ -41,6 +44,10 @@ function getUsers() {
  * Useful for when we need to define Ids for sheets and forms
  */
 
+/**
+ * Get user data by its unique ID
+ * @param {String} targetId - The unique identifier for the desired user
+ */
 function getUserById(targetId) {
 	// Get the sheet for users
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.USERS)

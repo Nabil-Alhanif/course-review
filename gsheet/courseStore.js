@@ -1,5 +1,5 @@
 /* Database Structure
- * user: {
+ * course: {
  *     id: UUID
  *     faculty: String
  *     code: String
@@ -9,13 +9,21 @@
 
 /* eslint-disable no-unused-vars */
 
-// Append a new user to the Users sheet
-
-// Append a new course to the Courses sheet
+/**
+ * Append a new course to the Courses sheet
+ * @param {Object} data - The course data to be appended
+ */
 function appendNewCourse(data) {
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.COURSES)
+
+	if (!sheet) {
+		Logger.log('Courses sheet not found')
+		return
+	}
+
 	const rows = sheet.getDataRange().getValues()
 
+	// Check if the course already exists
 	const existingCourse = rows.find(
 		(row) => row[1] === data.faculty && row[2] === data.code && row[3] === data.title
 	)
@@ -35,11 +43,15 @@ function appendNewCourse(data) {
 	}
 }
 
-// This is just a wrapper function
+// Wrapper function to get all courses
 function getCourses() {
 	return getSheetData('Courses')
 }
 
+/**
+ * Get course data by its unique ID
+ * @param {string} targetId - The unique identifier for the desired course
+ */
 function getCourseById(targetId) {
 	// Get the sheet for users
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.COURSES)
@@ -78,6 +90,10 @@ function getCourseById(targetId) {
 	)
 }
 
+/**
+ * Get course data by its code
+ * @param {string} targetCode - The code for the desired course
+ */
 function getCourseByCode(targetCode) {
 	// Get the sheet for users
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.COURSES)

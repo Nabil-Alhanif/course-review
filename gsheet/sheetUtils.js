@@ -1,12 +1,16 @@
 /* eslint-disable no-unused-vars */
-// Function to get data from a specified sheet and return it as JSON
-function getSheetData(sheet_name) {
-	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheet_name)
+/**
+ * Function to get data from a specified sheet and return it as JSON
+ * @param {String} sheetName - Name of the sheet
+ * @return {JSON} - Data from the sheet encoded as JSON
+ */
+function getSheetData(sheetName) {
+	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName)
 
 	if (!sheet) {
 		// Return error if the sheet is not found
 		return ContentService.createTextOutput(
-			JSON.stringify({ error: `Sheet ${sheet_name} not found` })
+			JSON.stringify({ error: `Sheet ${sheetName} not found` })
 		).setMimeType(ContentService.MimeType.JSON)
 	}
 

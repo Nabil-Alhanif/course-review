@@ -10,6 +10,11 @@ dotenv.config()
 
 const execAsync = promisify(exec)
 
+/**
+ * Execuytes a command asynchronously and handles its output and errors
+ * @param {string} command - The command to execute
+ * @param {object} [options={}] - Optional options to pass to exec
+ */
 async function runCommand(command, options = {}) {
 	try {
 		const { stdout, stderr } = await execAsync(command, options)
@@ -20,6 +25,9 @@ async function runCommand(command, options = {}) {
 	}
 }
 
+/**
+ * Main deployment fnction
+ */
 async function deploy() {
 	const buildDir = path.join(process.env.BASEDIR, '/dist')
 	const originalDir = process.cwd()

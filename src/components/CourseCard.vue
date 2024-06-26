@@ -1,25 +1,5 @@
-<script setup>
-import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
-
-const props = defineProps({
-	course: {
-		type: Object,
-		default: () => ({
-			faculty: 'Unknown Faculty',
-			code: 'Unknown Code',
-			title: 'Unknown Title'
-		}),
-		required: true
-	}
-})
-
-const formatted_code = computed(() => {
-	return props.course.code.replace(/(\D)(\d)/, '$1 $2')
-})
-</script>
-
 <template>
+	<!-- Link to the course page using the course code -->
 	<RouterLink :to="`/course/${course.code}`">
 		<div
 			class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
@@ -44,21 +24,28 @@ const formatted_code = computed(() => {
 	</RouterLink>
 </template>
 
-<style lang="scss" scoped>
-.kartu {
-	width: 404px;
-	height: 366px;
-	border: 2px solid;
-	border-color: black;
-}
+<script setup>
+import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
 
-.gambar {
-	width: 401px;
-	height: 244px;
-	background-color: red;
-}
+const props = defineProps({
+	course: {
+		type: Object,
+		default: () => ({
+			id: '0',
+			faculty: 'Unknown Faculty',
+			code: 'Unknown Code',
+			title: 'Unknown Title'
+		}),
+		required: true
+	}
+})
 
-.kartu:hover {
-	box-shadow: 3px 3px 5px;
-}
-</style>
+// Format the course code by adding a space between any letter followed by a number
+// This is the only way I can think of to format the code lol
+const formatted_code = computed(() => {
+	return props.course.code.replace(/(\D)(\d)/, '$1 $2')
+})
+</script>
+
+<style lang="scss" scoped></style>

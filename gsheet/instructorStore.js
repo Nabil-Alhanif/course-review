@@ -7,7 +7,10 @@
 
 /* eslint-disable no-unused-vars */
 
-// Append a new instructor to the Instructors sheet
+/**
+ * Append a new instrucotr to the Instructor sheet
+ * @param {Object} data - The instructor data to be appended
+ */
 function appendNewInstructor(data) {
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.INSTRUCTOR)
 	const rows = sheet.getDataRange().getValues().slice(1)
@@ -30,11 +33,15 @@ function appendNewInstructor(data) {
 	}
 }
 
-// This is just a wrapper function
+// Wrapper function to get all instructors
 function getInstructors() {
 	return getSheetData('Instructors')
 }
 
+/**
+ * Get instructor data by its unique ID
+ * @param {string} targetId - The unique identifier for the desired instructor
+ */
 function getInstructorById(targetId) {
 	// Get the sheet for users
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.INSTRUCTOR)

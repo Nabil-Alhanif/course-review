@@ -7,6 +7,7 @@ import { isObjectEmpty } from '@/utils'
 const API_URL =
 	'https://script.google.com/macros/s/AKfycbzC-fCdBpr00Qt7Dy2w6u66qEDQ5GDKUXEagKeSjpKF5Ex_WELXqjhbq-xPyjCA-ty3ug/exec'
 
+// Schema definition for a single review
 const reviewSchema = {
 	type: 'object',
 	properties: {
@@ -43,6 +44,7 @@ const reviewSchema = {
 	]
 }
 
+// Schema definition for multiple reviews
 const multiReviewSchema = {
 	type: 'array',
 	items: reviewSchema
@@ -53,6 +55,7 @@ addFormats(ajv)
 
 const validateMultiReview = ajv.compile(multiReviewSchema)
 
+// Utility function to create a validation function for multiple reviews
 function sortReviewsByDate(reviews) {
 	return reviews.slice().sort((a, b) => {
 		// Convert timestamp into Date object
@@ -65,11 +68,11 @@ function sortReviewsByDate(reviews) {
 }
 
 export const useReviewStore = defineStore({
-	id: 'review',
+	id: 'review', // Unique ID for the store
 	state: () => ({
-		reviews: [],
-		loading: false,
-		error: null
+		reviews: [], // Holds data for multiple reviews
+		loading: false, // Indicates loading state
+		error: null // Holds error messages
 	}),
 	getters: {
 		//

@@ -6,6 +6,7 @@ import { defineStore } from 'pinia'
 const API_URL =
 	'https://script.google.com/macros/s/AKfycbzC-fCdBpr00Qt7Dy2w6u66qEDQ5GDKUXEagKeSjpKF5Ex_WELXqjhbq-xPyjCA-ty3ug/exec'
 
+// Schema definition for a single user
 const userSchema = {
 	type: 'object',
 	properties: {
@@ -16,6 +17,7 @@ const userSchema = {
 	required: ['id', 'name', 'email']
 }
 
+// Schema definition for multiple users
 const multiUserSchema = {
 	type: 'array',
 	items: userSchema
@@ -30,10 +32,10 @@ const validateMultiUser = ajv.compile(multiUserSchema)
 export const useUserStore = defineStore({
 	id: 'user',
 	state: () => ({
-		user: null,
-		users: [],
-		loading: false,
-		error: null
+		user: null, // Hold data for a single user
+		users: [], // Holds data for multiple users
+		loading: false, // Indicate loading state
+		error: null // Holds error messages
 	}),
 	getters: {
 		//

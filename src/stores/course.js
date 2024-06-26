@@ -6,6 +6,7 @@ import { defineStore } from 'pinia'
 const API_URL =
 	'https://script.google.com/macros/s/AKfycbzC-fCdBpr00Qt7Dy2w6u66qEDQ5GDKUXEagKeSjpKF5Ex_WELXqjhbq-xPyjCA-ty3ug/exec'
 
+// Schema definition for a single course
 const courseSchema = {
 	type: 'object',
 	properties: {
@@ -17,6 +18,7 @@ const courseSchema = {
 	required: ['id', 'faculty', 'code', 'title']
 }
 
+// Schema definition for multiple courses (array of courses)
 const multiCourseSchema = {
 	type: 'array',
 	items: courseSchema
@@ -29,12 +31,12 @@ const validateCourse = ajv.compile(courseSchema)
 const validateMultiCourse = ajv.compile(multiCourseSchema)
 
 export const useCourseStore = defineStore({
-	id: 'course',
+	id: 'course', // Unique ID for the store
 	state: () => ({
-		course: null,
-		courses: [],
-		loading: false,
-		error: null
+		course: null, // Holds data for a single course
+		courses: [], // Holds data for multiple courses
+		loading: false, // Indicates loading state
+		error: null // Holds error messages
 	}),
 	getters: {
 		//
