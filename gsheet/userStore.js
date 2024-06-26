@@ -17,7 +17,7 @@ function appendNewUser(data) {
 	const rows = sheet.getDataRange().getValues().slice(1)
 
 	// Check if the user already exists
-	const existingUser = rows.find((row) => row[1] === data.name && row[2] === data.email)
+	const existingUser = rows.find((row) => row[2] === data.email)
 
 	if (existingUser) {
 		data.id = existingUser[0]
@@ -49,10 +49,12 @@ function getUsers() {
  * @param {String} targetId - The unique identifier for the desired user
  */
 function getUserById(targetId) {
+	Logger.log(`Searching for user by ID: ${targetId}`)
 	// Get the sheet for users
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.USERS)
 
 	if (!sheet) {
+		Logger.log('USER SHEET NOT FOUND!!')
 		// Return error if user sheet is not found
 		return ContentService.createTextOutput(
 			JSON.stringify({

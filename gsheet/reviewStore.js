@@ -76,10 +76,12 @@ function getReviews() {
  * @params {Object} params -  an object containing review_id, user_id, course_id, and instructor_id
  */
 function getReviewsById(params) {
+	Logger.log('Searching for reviews by ID:')
 	Logger.log(params)
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.REVIEWS)
 
 	if (!sheet) {
+		Logger.log('REVIEWS SHEET NOT FOUND!!')
 		// Return error if review sheet is not found
 		return ContentService.createTextOutput(
 			JSON.stringify({

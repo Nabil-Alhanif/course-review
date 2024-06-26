@@ -23,10 +23,11 @@ function appendNewCourse(data) {
 
 	const rows = sheet.getDataRange().getValues()
 
-	// Check if the course already exists
-	const existingCourse = rows.find(
-		(row) => row[1] === data.faculty && row[2] === data.code && row[3] === data.title
-	)
+	/**
+	 * Check if the course already exists
+	 * Course are considered the same if they came from the same faculty and have the same code
+	 */
+	const existingCourse = rows.find((row) => row[1] === data.faculty && row[2] === data.code)
 
 	if (existingCourse) {
 		data.id = existingCourse[0]
@@ -53,10 +54,12 @@ function getCourses() {
  * @param {string} targetId - The unique identifier for the desired course
  */
 function getCourseById(targetId) {
+	Logger.log(`Searching for course by ID: ${targetId}`)
 	// Get the sheet for users
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.COURSES)
 
 	if (!sheet) {
+		Logger.log('COURSES SHEET NOT FOUND!!')
 		// Return error if user sheet is not found
 		return ContentService.createTextOutput(
 			JSON.stringify({
@@ -95,10 +98,12 @@ function getCourseById(targetId) {
  * @param {string} targetCode - The code for the desired course
  */
 function getCourseByCode(targetCode) {
+	Logger.log(`Searching for course by code: ${targetCode}`)
 	// Get the sheet for users
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.COURSES)
 
 	if (!sheet) {
+		Logger.log('COURSES SHEET NOT FOUND!!')
 		// Return error if user sheet is not found
 		return ContentService.createTextOutput(
 			JSON.stringify({

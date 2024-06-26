@@ -43,10 +43,12 @@ function getInstructors() {
  * @param {string} targetId - The unique identifier for the desired instructor
  */
 function getInstructorById(targetId) {
+	Logger.log(`Searching for instructor by ID: ${targetId}`)
 	// Get the sheet for users
 	const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAMES.INSTRUCTOR)
 
 	if (!sheet) {
+		Logger.log('INSTRUCTOR SHEET NOT FOUND!!')
 		// Return error if user sheet is not found
 		return ContentService.createTextOutput(
 			JSON.stringify({
