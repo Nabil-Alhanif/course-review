@@ -16,10 +16,11 @@
 		<div>
 			<form action="" class="main-search">
 				<input
-					id="course-name"
+					v-model="searchQuery"
+					id="search-course"
 					type="text"
-					name="course-name"
-					placeholder="Course Name"
+					name="search-course"
+					placeholder="Search course code"
 					class="main-search-text"
 				/>
 			</form>
@@ -31,23 +32,30 @@
 			{{ error.message }}
 		</p>
 
-		<!-- Courses grid -->
-		<div className="w-full flex  justify-center items-center relative " v-if="courses">
-			<div className="items-center justify-center flex">
-				<div
-					class="md:grid md:grid-cols-3 gap-3 md:w-5/6 w-full space-y-4 md:space-y-0 justify-center items-center"
-				>
-					<div class="max-w-sm block" v-for="course in courses" :key="course.id">
-						<CourseCard :course="course" />
+		<div v-else>
+			<!-- Courses grid -->
+			<div
+				className="w-full flex  justify-center items-center relative "
+				v-if="filteredCourses.length !== 0"
+			>
+				<div className="items-center justify-center flex">
+					<div
+						class="md:grid md:grid-cols-3 gap-3 md:w-5/6 w-full space-y-4 md:space-y-0 justify-center items-center"
+					>
+						<div class="max-w-sm block" v-for="course in filteredCourses" :key="course.id">
+							<CourseCard :course="course" />
+						</div>
 					</div>
 				</div>
 			</div>
+
+			<p v-else>No courses found matching your search criteria</p>
 		</div>
 	</main>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCourseStore } from '@/stores/course'
 import CourseCard from '@/components/CourseCard.vue'
@@ -55,10 +63,10 @@ import CourseCard from '@/components/CourseCard.vue'
 const courseStore = useCourseStore()
 
 // Desctructuring courses and loading state from the store
-// TODO: Might change this to computed
 const { courses, loading } = storeToRefs(courseStore)
 
 const error = ref(null)
+const searchQuery = ref('')
 
 const fetchCourses = async () => {
 	error.value = null
@@ -69,9 +77,22 @@ const fetchCourses = async () => {
 	}
 }
 
+// Filter courses based on search query
+const filteredCourses = computed(() => {
+	if (!searchQuery.value) return courses.value
+	let filterResult = courses.value.filter((course) => {
+		return course.code.includes(searchQuery.value.toUpperCase()) // Course codes are already in upper case
+	})
+	return filterResult
+})
+
 onMounted(() => {
 	fetchCourses()
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.main-search-text {
+	border: 1px solid #e5e7eb;
+}
+</style>

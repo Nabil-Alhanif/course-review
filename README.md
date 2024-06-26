@@ -284,7 +284,7 @@ Readme's written by [`Readme AI`](https://github.com/eli64s/readme-ai), while th
 - [x] `► Setup google form and google sheet for database`
 - [x] `► Setup course and review pages`
 - [x] `► Improve comments and code styling`
-- [ ] `► Create a search function for courses`
+- [x] `► Create a search function for courses`
 - [ ] `► User authentication (should be quick, unsure if it would be useful...)`
 - [ ] `► On site review input form`
 - [ ] `► Migration to actual database (?)`

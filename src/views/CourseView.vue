@@ -47,6 +47,7 @@
 
 							<button
 								class="justify-center items-center px-6 py-3.5 mt-6 text-base text-white bg-gradient-to-r to-emerald-600 from-sky-400 rounded-lg shadow-sm max-md:px-5 max-md:max-w-full"
+								@click="openReviewForm"
 							>
 								Submit a review
 							</button>
@@ -136,6 +137,11 @@ const averageWorkload = computed(() => {
 	const totalWorkload = reviews.value.reduce((acc, review) => acc + review.workload, 0)
 	return totalWorkload / reviews.value.length
 })
+
+const openReviewForm = () => {
+	const url = 'https://forms.gle/8sSfxZrQTLRvx1zz7'
+	window.open(url, '_blank')
+}
 
 // Watcher to fetch reviews when the course is loaded
 watch(
